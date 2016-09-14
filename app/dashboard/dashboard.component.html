@@ -1,0 +1,5 @@
+<ul>
+    <li *ngFor="let inspectionDetail of inspectionDetails">
+        <a (click)="selectInsepction(inspectionDetail)">{{inspectionDetail.herdNumber}}</a>
+    </li>
+</ul>

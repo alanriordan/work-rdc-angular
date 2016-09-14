@@ -1,0 +1,22 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item" [class.active]="isBreadcrumbActive(-1)">
+         <span *ngIf="!isBreadcrumbActive(-1)"><a (click)="goToSmr(-1)" >Dashboard</a> </span>
+         <span *ngIf="isBreadcrumbActive(-1)">Dashboard</span>
+         
+    </li>
+
+    <template [ngIf]="!dashboardSelected">
+        <li class="breadcrumb-item" [class.active]="isBreadcrumbActive(-2)" *ngIf="dashboardSelected">
+            <span *ngIf="!isBreadcrumbActive(-2)"><a (click)="goToSmr(-2)">Summary</a> </span>
+            <span *ngIf="isBreadcrumbActive(-2)">Summary</span>
+            
+        </li>
+    </template>    
+    <template [ngIf]="!dashboardSelected">
+      <li class="breadcrumb-item" [class.active]="isBreadcrumbActive(smrDetail.code)" *ngFor="let smrDetail of smrDetails">
+         <span *ngIf="!isBreadcrumbActive(smrDetail.code)"><a (click)="goToSmr(smrDetail.code)" >{{smrDetail.label}}</a> </span>
+         <span *ngIf="isBreadcrumbActive(smrDetail.code)">{{smrDetail.label}} </span>
+         
+    </li>
+    </template>
+<ol>    
