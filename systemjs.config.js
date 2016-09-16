@@ -22,6 +22,7 @@
       '@angular/http': 'npm:@angular/http/bundles/http.umd.js',
       '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
+      '@ng-bootstrap/ng-bootstrap': 'node_modules/@ng-bootstrap/ng-bootstrap',
 
       // other libraries
       'rxjs':                       'npm:rxjs',
@@ -39,7 +40,8 @@
       'angular2-in-memory-web-api': {
         main: './index.js',
         defaultExtension: 'js'
-      }
+      },
+      '@ng-bootstrap/ng-bootstrap': {main: 'index.js', defaultExtension: 'js'}
     }
   });
 })(this);
