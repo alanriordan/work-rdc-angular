@@ -1,0 +1,52 @@
+<div class="form-group row">
+	<label for="inspDate" class="col-sm-3 col-form-label">Inspection
+		Date</label>
+	<div class="col-sm-3">
+		<input type="date" class="form-control form-control-lg" id="inspDate"
+			required [(ngModel)]="model.inspDate" name="inspDate"
+			#inspDate="ngModel">
+
+		<div [hidden]="inspDate.valid || inspDate.pristine"
+			class="alert alert-danger">Inspection Date is required</div>
+	</div>
+	<label for="reasonNotCompleted" class="col-sm-3 col-form-label">
+		Reason Inspection Not Completed</label>
+	<div class="col-sm-3">
+		<select class="form-control form-control-sm" id="reasonNotCompleted"
+			required [(ngModel)]="model.reasonNotCompleted"
+			name="reasonNotCompleted" #reasonNotCompleted="ngModel">
+			<option selected="selected" value="-9999">NA</option>
+			<option value="1">Early Retirement</option>
+			<option value="2">Refusal to Co-operate</option>
+			<option value="3">SMR Deferred to Next Year</option>
+			<option value="4">Other</option>
+		</select>
+
+		<div
+			[hidden]="reasonNotCompleted.valid || reasonNotCompleted.pristine"
+			class="alert alert-danger">Reason Inspection Not Completed is
+			required</div>
+	</div>
+</div>
+<div class="form-group row">
+	<label for="outwinteringDate" class="col-sm-3 col-form-label">Start
+		date for winter housing of cattle (between 15th October - 1st Dec)</label>
+	<div class="col-sm-3">
+		<input type="date" class="form-control" id="outwinteringDate"
+			required [(ngModel)]="model.outwinteringDate" name="outwinteringDate"
+			#outwinteringDate="ngModel">
+
+		<div [hidden]="outwinteringDate.valid || outwinteringDate.pristine"
+			class="alert alert-danger">Out Wintering Date is required</div>
+	</div>
+
+	<div class="col-md-6">
+		<div class="checkbox">
+			<label class="col-sm-3 col-form-label"><input type="checkbox"
+				[(ngModel)]="model.forceMajeureInd" id="forceMajeureInd"
+				#forceMajeureInd="ngModel" name="forceMajeureInd">Force
+				Majeure</label>
+		</div>
+
+	</div>
+</div>

@@ -7,13 +7,16 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {AfitService} from './service/afit.service';
 import {routing} from './app.routing';
 import {SummaryComponent} from './summary/summary.component';
+import {NitratesComponent} from './nitrates/nitrates.component';
 import {MenuComponent} from './common/menu.component';
 import {ContainerComponent} from './container/container.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {OnlineService} from './common/online-check.service';
 
 @NgModule({
-  imports: [ BrowserModule, HttpModule, routing, FormsModule ],
-  declarations: [ AppComponent, DashboardComponent, SummaryComponent, MenuComponent, ContainerComponent ],
+  imports: [ BrowserModule, HttpModule, routing, FormsModule, NgbModule ],
+  declarations: [ AppComponent, DashboardComponent, SummaryComponent, MenuComponent, ContainerComponent, NitratesComponent ],
   bootstrap: [ AppComponent ],
-  providers : [AfitService]
+  providers : [AfitService, OnlineService]
 })
 export class AppModule { }

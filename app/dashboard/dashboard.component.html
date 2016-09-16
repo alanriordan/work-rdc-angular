@@ -1,5 +1,11 @@
-<ul>
-    <li *ngFor="let inspectionDetail of inspectionDetails">
-        <a (click)="selectInsepction(inspectionDetail)">{{inspectionDetail.herdNumber}}</a>
-    </li>
-</ul>
+ 
+<div class="album text-muted">
+      <div class="container">
+
+        <div class="row" *ngFor="let inspectionDetail of inspectionDetails">
+          <div class="card">
+              <p>{{inspectionDetail.inspectionInstanceNumber}}</p>
+              <a (click)="selectInsepction(inspectionDetail)">{{inspectionDetail.herdNumber}}</a>
+          </div>
+        </div>
+

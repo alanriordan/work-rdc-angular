@@ -7,7 +7,7 @@ export class SmrDetails{
 export const SmrCodes : SmrDetails[] = [
     {code:-1, label:'Summary', route:'summary'},
     {code:-2, label:'Dashboard', route:'dashboard'},
-    {code:1,label:'SPA', route:'spa'},
+    {code:1,label:'Spa', route:'spa'},
     {code:2,label:'GroundWater', route:'groundwater'},
     {code:3,label:'Sludge', route:'sludge'},
     {code:5,label:'Sac', route:'sac'},
@@ -17,7 +17,7 @@ export const SmrCodes : SmrDetails[] = [
     {code:10,label:'Hormone', route:'dashboard'},
     {code:11,label:'Food', route:'dashboard'},
     {code:12,label:'Tse', route:'dashboard'},
-    {code:13,label:'Nitrates', route:'dashboard'},
+    {code:13,label:'Nitrates', route:'nitrates'},
     {code:131,label:'NitratesWS', route:'dashboard'}
 
 ];

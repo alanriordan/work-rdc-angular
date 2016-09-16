@@ -1,0 +1,879 @@
+<div class="card">	
+	<div class="card-block">
+		<div class="container">
+			<form #nitratesForm="ngForm">
+				<ngb-accordion #acc="ngbAccordion">
+					<ngb-panel title="Details">
+						<template ngbPanelContent>
+							<div class="form-group row">
+								<label for="inspDate" class="col-sm-4 col-form-label">Inspection Date</label>
+								<div class="col-sm-2">
+									<input type="date" class="form-control form-control-sm" id="inspDate" required [(ngModel)]="model.inspDate" name="inspDate"
+										#inspDate="ngModel">
+
+									<div [hidden]="inspDate.valid || inspDate.pristine" class="alert alert-danger">Inspection Date is required</div>
+								</div>
+								<label for="reasonNotCompleted" class="col-sm-3 col-form-label"> Reason Inspection Not
+									Completed</label>
+								<div class="col-sm-3">
+									<select class="form-control form-control-sm" id="reasonNotCompleted" required [(ngModel)]="model.reasonNotCompleted" name="reasonNotCompleted"
+										#reasonNotCompleted="ngModel">
+									<option selected="selected" value="-9999">NA</option>
+									<option value="1">Early Retirement</option>
+									<option value="2">Refusal to Co-operate</option>
+									<option value="3">SMR Deferred to Next Year</option>
+									<option value="4">Other</option>
+								</select>
+
+									<div [hidden]="reasonNotCompleted.valid || reasonNotCompleted.pristine" class="alert alert-danger">Reason Inspection Not Completed is required</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="outwinteringDate" class="col-sm-4 col-form-label">Start date for winter
+									housing of cattle (between 15th October - 1st Dec)</label>
+								<div class="col-sm-2"> <input type="date" class="form-control form-control-sm" id="outwinteringDate" required [(ngModel)]="model.outwinteringDate"
+										name="outwinteringDate" #outwinteringDate="ngModel">
+
+									<div [hidden]="outwinteringDate.valid || outwinteringDate.pristine" class="alert alert-danger">Out Wintering Date is required</div>
+								</div>
+
+								<div class="col-md-6">
+									<div class="checkbox">
+										<label class="col-sm-6 col-form-label ">Force
+										Majeure<input type="checkbox"
+										[(ngModel)]="model.forceMajeureInd" id="forceMajeureInd"
+										#forceMajeureInd="ngModel" name="forceMajeureInd"></label>
+									</div>
+
+								</div>
+							</div>
+						</template>
+					</ngb-panel>
+
+					<!--  Section 1 -->
+					<ngb-panel title="Section 1: Records">
+						<template ngbPanelContent>
+							<div class="form-group row">
+								<div class="col-sm-1">
+									<span><b>1A</b></span>
+								</div>
+
+								<label for="a11PenaltyCode" class="col-sm-6 col-form-label">Has the applicant been advised to forward records</label>
+								<div class="col-sm-2">
+									<select class="form-control form-control-sm" id="reasonNotCompleted" required [(ngModel)]="model.a11PenaltyCode" name="a11PenaltyCode"
+										#a11PenaltyCode="ngModel">
+								<option value="" selected="selected"></option>
+								<option value="0">NA</option>
+								<option value="1">Yes</option>
+								<option value="2">No</option>
+							</select>
+
+									<div [hidden]="a11PenaltyCode.valid || a11PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+							</div>
+						</template>
+					</ngb-panel>
+					<!-- end of section 1 -->
+
+					<!--  Section 2 -->
+					<ngb-panel title="Section 2: Minimisation of Soiled water">
+						<template ngbPanelContent>
+							<div class="form-group row">
+								<div class="col-sm-1">
+									<span><b>2A</b></span>
+								</div>
+
+								<label for="a21PenaltyCode" class="col-sm-6 col-form-label">Is there evidence that clean water is not being diverted to a clean water outfall to minimise soiled water generation?</label>
+								<div class="col-sm-2">
+									<select class="form-control form-control-sm" id="a21PenaltyCode" required [(ngModel)]="model.a21PenaltyCode" name="a21PenaltyCode"
+										#a21PenaltyCode="ngModel">
+							<option value="" selected="selected"></option>
+							<option value="0">NA</option>
+							<option value="3">CL</option>
+							<option value="4">4</option>
+							<option value="8">8</option>
+							<option value="11">11</option>
+							<option value="31">31</option>
+							<option value="51">51</option>
+						</select>
+
+									<div [hidden]="a21PenaltyCode.valid || a21PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+							</div>
+						</template>
+					</ngb-panel>
+					<!-- end of section 2 -->
+
+					<!--  Section 3 -->
+					<ngb-panel title="Section 3: Livestock Manures and Other Organic Fertilisers">
+						<template ngbPanelContent>
+							<div class="form-group row">
+								<div class="col-sm-1 offset-sm-7">
+									<b>Livestock Manure</b>
+								</div>
+								<div class="col-sm-1">
+									<b>Organic Fertiliser</b>
+								</div>
+								<div class="col-sm-1">
+									<b>Soiled Water</b>
+								</div>
+								<div class="col-sm-1">
+									<b>Silage Effluent</b>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-1">
+									<span><b>3A</b></span>
+								</div>
+
+								<label for="a31PenaltyCode" class="col-sm-6 col-form-label">Is there visual evidence of inadequate collection of livestock manure, other organic fertilisers, soiled water or silage effluent?</label>
+								<div class="col-sm-1">
+									<select class="form-control form-control-sm" id="a31PenaltyCode" required [(ngModel)]="model.a31PenaltyCode" name="a31PenaltyCode"
+										#a31PenaltyCode="ngModel">
+							<option value="" selected="selected"></option>
+							<option value="0">NA</option>
+							<option value="3">CL</option>
+							<option value="4">4</option>
+							<option value="8">8</option>
+							<option value="11">11</option>
+							<option value="31">31</option>
+							<option value="51">51</option>
+						</select>
+
+									<div [hidden]="a31PenaltyCode.valid || a31PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+								<div class="col-sm-1">
+									<select class="form-control form-control-sm" id="a32PenaltyCode" required [(ngModel)]="model.a32PenaltyCode" name="a32PenaltyCode"
+										#a32PenaltyCode="ngModel">
+							<option value="" selected="selected"></option>
+							<option value="0">NA</option>
+							<option value="3">CL</option>
+							<option value="4">4</option>
+							<option value="8">8</option>
+							<option value="11">11</option>
+							<option value="31">31</option>
+							<option value="51">51</option>
+						</select>
+
+									<div [hidden]="a32PenaltyCode.valid || a32PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+								<div class="col-sm-1">
+									<select class="form-control form-control-sm" id="a33PenaltyCode" required [(ngModel)]="model.a33PenaltyCode" name="a33PenaltyCode"
+										#a33PenaltyCode="ngModel">
+							<option value="" selected="selected"></option>
+							<option value="0">NA</option>
+							<option value="3">CL</option>
+							<option value="4">4</option>
+							<option value="8">8</option>
+							<option value="11">11</option>
+							<option value="31">31</option>
+							<option value="51">51</option>
+						</select>
+
+									<div [hidden]="a33PenaltyCode.valid || a33PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+								<div class="col-sm-1">
+									<select class="form-control form-control-sm" id="a34PenaltyCode" required [(ngModel)]="model.a34PenaltyCode" name="a34PenaltyCode"
+										#a34PenaltyCode="ngModel">
+							<option value="" selected="selected"></option>
+							<option value="0">NA</option>
+							<option value="3">CL</option>
+							<option value="4">4</option>
+							<option value="8">8</option>
+							<option value="11">11</option>
+							<option value="31">31</option>
+							<option value="51">51</option>
+						</select>
+
+									<div [hidden]="a34PenaltyCode.valid || a34PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<div class="col-sm-1">
+									<span><b>3B</b></span>
+								</div>
+
+								<label for="b31PenaltyCode" class="col-sm-6 col-form-label">Is there visual evidence of inadequate management of the storage facilities for livestock manure, other organic fertilisers, soiled water or silage effluent?</label>
+								<div class="col-sm-1">
+									<select class="form-control form-control-sm" id="b31PenaltyCode" required [(ngModel)]="model.b31PenaltyCode" name="b31PenaltyCode"
+										#b31PenaltyCode="ngModel">
+							<option value="" selected="selected"></option>
+							<option value="0">NA</option>
+							<option value="3">CL</option>
+							<option value="4">4</option>
+							<option value="11">11</option>
+							<option value="31">31</option>
+							<option value="51">51</option>
+						</select>
+
+									<div [hidden]="b31PenaltyCode.valid || b31PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+								<div class="col-sm-1">
+									<select class="form-control form-control-sm" id="b32PenaltyCode" required [(ngModel)]="model.b32PenaltyCode" name="b32PenaltyCode"
+										#b32PenaltyCode="ngModel">
+							<option value="" selected="selected"></option>
+							<option value="0">NA</option>
+							<option value="3">CL</option>
+							<option value="4">4</option>
+							<option value="11">11</option>
+							<option value="31">31</option>
+							<option value="51">51</option>
+						</select>
+
+									<div [hidden]="b32PenaltyCode.valid || b32PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+								<div class="col-sm-1">
+									<select class="form-control form-control-sm" id="b33PenaltyCode" required [(ngModel)]="model.b33PenaltyCode" name="b33PenaltyCode"
+										#b33PenaltyCode="ngModel">
+							<option value="" selected="selected"></option>
+							<option value="0">NA</option>
+							<option value="3">CL</option>
+							<option value="4">4</option>
+							<option value="11">11</option>
+							<option value="31">31</option>
+							<option value="51">51</option>
+						</select>
+
+									<div [hidden]="b33PenaltyCode.valid || b33PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+								<div class="col-sm-1">
+									<select class="form-control form-control-sm" id="b34PenaltyCode" required [(ngModel)]="model.b34PenaltyCode" name="b34PenaltyCode"
+										#b34PenaltyCode="ngModel">
+							<option value="" selected="selected"></option>
+							<option value="0">NA</option>
+							<option value="3">CL</option>
+							<option value="4">4</option>							
+							<option value="11">11</option>
+							<option value="31">31</option>
+							<option value="51">51</option>
+						</select>
+
+									<div [hidden]="b34PenaltyCode.valid || b34PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+							</div>
+
+
+							<div class="form-group row">
+								<div class="col-sm-1">
+									<span><b>3C</b></span>
+								</div>
+
+								<label for="c31PenaltyCode" class="col-sm-6 col-form-label">Is there visual evidence of structural defects in the storage facilities in use leading to direct or indirect runoff to groundwater/surfacewater?</label>
+								<div class="col-sm-1">
+									<select class="form-control form-control-sm" id="c31PenaltyCode" required [(ngModel)]="model.c31PenaltyCode" name="c31PenaltyCode"
+										#c31PenaltyCode="ngModel">
+							<option value="" selected="selected"></option>
+							<option value="0">NA</option>
+							<option value="3">CL</option>
+							<option value="4">4</option>
+							<option value="8">8</option>
+							<option value="11">11</option>
+							<option value="31">31</option>
+							<option value="51">51</option>
+						</select>
+
+									<div [hidden]="c31PenaltyCode.valid || c31PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+								<div class="col-sm-1">
+									<select class="form-control form-control-sm" id="c32PenaltyCode" required [(ngModel)]="model.c32PenaltyCode" name="c32PenaltyCode"
+										#c32PenaltyCode="ngModel">
+							<option value="" selected="selected"></option>
+							<option value="0">NA</option>
+							<option value="3">CL</option>
+							<option value="4">4</option>
+							<option value="8">8</option>
+							<option value="11">11</option>
+							<option value="31">31</option>
+							<option value="51">51</option>
+						</select>
+
+									<div [hidden]="c32PenaltyCode.valid || c32PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+								<div class="col-sm-1">
+									<select class="form-control form-control-sm" id="c33PenaltyCode" required [(ngModel)]="model.c33PenaltyCode" name="c33PenaltyCode"
+										#c33PenaltyCode="ngModel">
+							<option value="" selected="selected"></option>
+							<option value="0">NA</option>
+							<option value="3">CL</option>
+							<option value="4">4</option>
+							<option value="8">8</option>
+							<option value="11">11</option>
+							<option value="31">31</option>
+							<option value="51">51</option>
+						</select>
+
+									<div [hidden]="c33PenaltyCode.valid || c33PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+								<div class="col-sm-1">
+									<select class="form-control form-control-sm" id="c34PenaltyCode" required [(ngModel)]="model.c34PenaltyCode" name="c34PenaltyCode"
+										#c34PenaltyCode="ngModel">
+							<option value="" selected="selected"></option>
+							<option value="0">NA</option>
+							<option value="3">CL</option>
+							<option value="4">4</option>
+							<option value="8">8</option>
+							<option value="11">11</option>
+							<option value="31">31</option>
+							<option value="51">51</option>
+						</select>
+
+									<div [hidden]="c34PenaltyCode.valid || c34PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<div class="col-sm-1">
+									<span><b>3D</b></span>
+								</div>
+
+								<label for="d31PenaltyCode" class="col-sm-6 col-form-label">Is there evidence that farmyard manure is or has been stockpiled on land during the prohibited spreading period?</label>
+								<div class="col-sm-1">
+									<select class="form-control form-control-sm" id="d31PenaltyCode" required [(ngModel)]="model.d31PenaltyCode" name="d31PenaltyCode"
+										#d31PenaltyCode="ngModel">
+							<option value="" selected="selected"></option>
+							<option value="0">NA</option>
+							<option value="3">CL</option>
+							<option value="4">4</option>							
+							<option value="11">11</option>
+							<option value="31">31</option>
+							<option value="51">51</option>
+						</select>
+
+									<div [hidden]="d31PenaltyCode.valid || d31PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+
+							</div>
+
+							<div class="form-group row">
+								<div class="col-sm-1">
+									<span><b>3E</b></span>
+								</div>
+
+								<label for="e31PenaltyCode" class="col-sm-6 col-form-label">Is the applicant availing of reduced storage through out wintering?</label>
+								<div class="col-sm-1">
+									<select class="form-control form-control-sm" id="e31PenaltyCode" required [(ngModel)]="model.e31PenaltyCode" name="e31PenaltyCode"
+										#e31PenaltyCode="ngModel">
+							<option value="" selected="selected"></option>
+							<option value="0">NA</option>
+							<option value="1">Yes</option>
+							<option value="2">No</option>
+						</select>
+
+									<div [hidden]="e31PenaltyCode.valid || e31PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-1 offset-sm-7">
+									<span><b>Outwintering</b></span>
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<div class="col-sm-1">
+									<span><b>3F</b></span>
+								</div>
+
+								<label for="f31PenaltyCode" class="col-sm-6 col-form-label">Is the applicant meeting the outwintering requirements</label>
+								<div class="col-sm-1">
+									<select class="form-control form-control-sm" id="f31PenaltyCode" required [(ngModel)]="model.f31PenaltyCode" name="f31PenaltyCode"
+										#f31PenaltyCode="ngModel">
+							<option value="" selected="selected"></option>
+							<option value="0">NA</option>
+							<option value="1">Yes</option>
+							<option value="2">No</option>
+						</select>
+
+									<div [hidden]="f31PenaltyCode.valid || f31PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+
+							</div>
+
+							<div class="form-group row">
+								<div class="col-sm-1">
+									<span><b>3G</b></span>
+								</div>
+
+								<label for="i31PenaltyCode" class="col-sm-6 col-form-label">Is there evidence that silage bales are stored outside of farmyards within 20m of a watercourse or drinking water abstraction point without adequate facilities for the collection and storage of effluent?</label>
+								<div class="col-sm-1">
+									<select class="form-control form-control-sm" id="i31PenaltyCode" required [(ngModel)]="model.i31PenaltyCode" name="i31PenaltyCode"
+										#i31PenaltyCode="ngModel">
+							<option value="" selected="selected"></option>
+							<option value="0">NA</option>
+							<option value="3">CL</option>
+							<option value="4">4</option>							
+							<option value="11">11</option>
+							<option value="31">31</option>
+							<option value="51">51</option>
+						</select>
+
+									<div [hidden]="i31PenaltyCode.valid || i31PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+
+							</div>
+
+							<div class="form-group row">
+								<div class="col-sm-1">
+									<span><b>3H</b></span>
+								</div>
+
+								<label for="h31PenaltyCode" class="col-sm-6 col-form-label">Is there evidence of supplementary feeding of animals taking place within 20m of waters and/or taking place on bare rock?</label>
+								<div class="col-sm-1">
+									<select class="form-control form-control-sm" id="h31PenaltyCode" required [(ngModel)]="model.h31PenaltyCode" name="h31PenaltyCode"
+										#h31PenaltyCode="ngModel">
+							<option value="" selected="selected"></option>
+							<option value="0">NA</option>
+							<option value="3">CL</option>
+							<option value="4">4</option>
+							<option value="8">8</option>							
+							<option value="11">11</option>
+							<option value="31">31</option>
+							<option value="51">51</option>
+						</select>
+
+									<div [hidden]="h31PenaltyCode.valid || h31PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+
+							</div>
+						</template>
+					</ngb-panel>
+					<!-- end of section 3 -->
+
+					<!-- section 4 -->
+					<ngb-panel title="Section 4: Landspreading of Chemical and Organic Fertiliser">
+						<template ngbPanelContent>
+							<div class="form-group row">
+								<div class="col-sm-1 offset-sm-7">
+									<b>Chemical Fertiliser</b>
+								</div>
+								<div class="col-sm-1">
+									<b>Organic Fertiliser</b>
+								</div>
+								<div class="col-sm-1">
+									<b>Soiled Water</b>
+								</div>
+								<div class="col-sm-1">
+									<b>FYM</b>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-1">
+									<span><b>4A</b></span>
+								</div>
+
+								<label for="a41PenaltyCode" class="col-sm-6 col-form-label">Is there evidence that chemical fertiliser has been applied within 2.0 m of a surface watercourse?</label>
+								<div class="col-sm-1">
+									<select class="form-control form-control-sm" id="a41PenaltyCode" required [(ngModel)]="model.a41PenaltyCode" name="a41PenaltyCode"
+										#a41PenaltyCode="ngModel">
+							<option value="" selected="selected"></option>
+							<option value="0">NA</option>
+							<option value="3">CL</option>							
+							<option value="31">31</option>
+							<option value="51">51</option>
+						</select>
+
+									<div [hidden]="a41PenaltyCode.valid || a41PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+
+							</div>
+
+							<div class="form-group row">
+								<div class="col-sm-1">
+									<span><b>4B</b></span>
+								</div>
+
+								<label for="b41PenaltyCode" class="col-sm-6 col-form-label">Is there evidence that Organic Fertiliser or Soiled water has been applied within the minimum buffer zones for water extraction points as specified in the Regulations?</label>
+								<div class="col-sm-1 offset-sm-1">
+									<select class="form-control form-control-sm" id="b41PenaltyCode" required [(ngModel)]="model.b41PenaltyCode" name="b41PenaltyCode"
+										#b41PenaltyCode="ngModel">
+							<option value="" selected="selected"></option>
+							<option value="0">NA</option>
+							<option value="3">CL</option>
+							<option value="11">11</option>							
+							<option value="31">31</option>
+							<option value="51">51</option>
+						</select>
+
+									<div [hidden]="b41PenaltyCode.valid || b41PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+								<div class="col-sm-1">
+									<select class="form-control form-control-sm" id="b42PenaltyCode" required [(ngModel)]="model.b42PenaltyCode" name="b42PenaltyCode"
+										#b42PenaltyCode="ngModel">
+							<option value="" selected="selected"></option>
+							<option value="0">NA</option>
+							<option value="3">CL</option>	
+							<option value="11">11</option>						
+							<option value="31">31</option>
+							<option value="51">51</option>
+						</select>
+
+									<div [hidden]="b42PenaltyCode.valid || b42PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-1">
+									<span><b>4C</b></span>
+								</div>
+
+								<label for="c41PenaltyCode" class="col-sm-6 col-form-label"> 	Is there evidence that Organic Fertiliser or Soiled Water has been applied within 20m of a lake shoreline?</label>
+								<div class="col-sm-1 offset-sm-1">
+									<select class="form-control form-control-sm" id="c41PenaltyCode" required [(ngModel)]="model.c41PenaltyCode" name="c41PenaltyCode"
+										#c41PenaltyCode="ngModel">
+							<option value="" selected="selected"></option>
+							<option value="0">NA</option>
+							<option value="3">CL</option>
+							<option value="11">11</option>							
+							<option value="31">31</option>
+							<option value="51">51</option>
+						</select>
+
+									<div [hidden]="c41PenaltyCode.valid || c41PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+								<div class="col-sm-1">
+									<select class="form-control form-control-sm" id="c42PenaltyCode" required [(ngModel)]="model.c42PenaltyCode" name="c42PenaltyCode"
+										#c42PenaltyCode="ngModel">
+							<option value="" selected="selected"></option>
+							<option value="0">NA</option>
+							<option value="3">CL</option>	
+							<option value="11">11</option>						
+							<option value="31">31</option>
+							<option value="51">51</option>
+						</select>
+
+									<div [hidden]="c42PenaltyCode.valid || c42PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-1">
+									<span><b>4D</b></span>
+								</div>
+
+								<label for="d41PenaltyCode" class="col-sm-6 col-form-label">Is there evidence that Organic Fertiliser or Soiled Water has been applied within 15m of exposed cavernous or karstified limestone features?</label>
+								<div class="col-sm-1 offset-sm-1">
+									<select class="form-control form-control-sm" id="d41PenaltyCode" required [(ngModel)]="model.d41PenaltyCode" name="d41PenaltyCode"
+										#d41PenaltyCode="ngModel">
+								<option value="" selected="selected"></option>
+								<option value="0">NA</option>
+								<option value="3">CL</option>
+								<option value="11">11</option>							
+								<option value="31">31</option>
+								<option value="51">51</option>
+							</select>
+
+									<div [hidden]="d41PenaltyCode.valid || d41PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+								<div class="col-sm-1">
+									<select class="form-control form-control-sm" id="d42PenaltyCode" required [(ngModel)]="model.d42PenaltyCode" name="d42PenaltyCode"
+										#d42PenaltyCode="ngModel">
+								<option value="" selected="selected"></option>
+								<option value="0">NA</option>
+								<option value="3">CL</option>	
+								<option value="11">11</option>						
+								<option value="31">31</option>
+								<option value="51">51</option>
+							</select>
+
+									<div [hidden]="d42PenaltyCode.valid || d42PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<div class="col-sm-1">
+									<span><b>4E</b></span>
+								</div>
+
+								<label for="e41PenaltyCode" class="col-sm-6 col-form-label">Has Organic Fertiliser or Soiled Water been applied within 5m of a surface watercourse or other distances as specified in the Regulations?</label>
+								<div class="col-sm-1 offset-sm-1">
+									<select class="form-control form-control-sm" id="e41PenaltyCode" required [(ngModel)]="model.e41PenaltyCode" name="e41PenaltyCode"
+										#e41PenaltyCode="ngModel">
+								<option value="" selected="selected"></option>
+								<option value="0">NA</option>
+								<option value="3">CL</option>
+								<option value="11">11</option>							
+								<option value="31">31</option>
+								<option value="51">51</option>
+							</select>
+
+									<div [hidden]="e41PenaltyCode.valid || e41PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+								<div class="col-sm-1">
+									<select class="form-control form-control-sm" id="e42PenaltyCode" required [(ngModel)]="model.e42PenaltyCode" name="e42PenaltyCode"
+										#e42PenaltyCode="ngModel">
+								<option value="" selected="selected"></option>
+								<option value="0">NA</option>
+								<option value="3">CL</option>	
+								<option value="11">11</option>						
+								<option value="31">31</option>
+								<option value="51">51</option>
+							</select>
+
+									<div [hidden]="e42PenaltyCode.valid || e42PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-1">
+									<span><b>4F</b></span>
+								</div>
+
+								<label for="f41PenaltyCode" class="col-sm-6 col-form-label">Has FYM, where stockpiled in a field, been stored in such a way or location that it breached the requirements of the Regulations including buffer zones?</label>
+								<div class="col-sm-1 offset-sm-3">
+									<select class="form-control form-control-sm" id="f41PenaltyCode" required [(ngModel)]="model.f41PenaltyCode" name="f41PenaltyCode"
+										#f41PenaltyCode="ngModel">
+								<option value="" selected="selected"></option>
+								<option value="0">NA</option>
+								<option value="3">CL</option>
+								<option value="11">11</option>							
+								<option value="31">31</option>
+								<option value="51">51</option>
+							</select>
+
+									<div [hidden]="f41PenaltyCode.valid || f41PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-1">
+									<span><b>4G</b></span>
+								</div>
+
+								<label for="g41PenaltyCode" class="col-sm-6 col-form-label">Has FYM, where stockpiled in a field, been stored in such a way or location that it breached the requirements of the Regulations including buffer zones?</label>
+								<div class="col-sm-1 offset-sm-2">
+									<select class="form-control form-control-sm" id="g41PenaltyCode" required [(ngModel)]="model.g41PenaltyCode" name="g41PenaltyCode"
+										#g41PenaltyCode="ngModel">
+								<option value="" selected="selected"></option>
+								<option value="0">NA</option>
+								<option value="1">Yes</option>
+								<option value="2">No</option>	
+							</select>
+
+									<div [hidden]="g41PenaltyCode.valid || g41PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-1">
+									<span><b>4H</b></span>
+								</div>
+
+								<label for="g41PenaltyCode" class="col-sm-6 col-form-label">Is this holding importing Organic Manures?</label>
+								<div class="col-sm-1 offset-sm-2">
+									<select class="form-control form-control-sm" id="h41PenaltyCode" required [(ngModel)]="model.h41PenaltyCode" name="h41PenaltyCode"
+										#h41PenaltyCode="ngModel">
+								<option value="" selected="selected"></option>
+								<option value="0">NA</option>
+								<option value="1">Yes</option>
+								<option value="2">No</option>	
+							</select>
+
+									<div [hidden]="h41PenaltyCode.valid || h41PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+							</div>
+						</template>
+					</ngb-panel>
+					<!-- end of section 4 -->
+
+					<!-- section 5 -->
+					<ngb-panel title="Section 5: Application Conditions of Organic Fertilisers">
+						<template ngbPanelContent>
+							<div class="form-group row">
+								<div class="col-sm-1 offset-sm-7">
+									<b>Chemical Fertiliser</b>
+								</div>
+								<div class="col-sm-1">
+									<b>Organic Fertiliser</b>
+								</div>
+								<div class="col-sm-1">
+									<b>Soiled Water</b>
+								</div>
+								<div class="col-sm-1">
+									<b>FYM</b>
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<div class="col-sm-1">
+									<span><b>5A</b></span>
+								</div>
+
+								<label for="a51PenaltyCode" class="col-sm-6 col-form-label">Is there evidence of a poor spread pattern of livestock manure, other organic fertilisers or soiled water on the land?</label>
+								<div class="col-sm-1">
+									<select class="form-control form-control-sm" id="a51PenaltyCode" required [(ngModel)]="model.a51PenaltyCode" name="a51PenaltyCode"
+										#a51PenaltyCode="ngModel">
+							<option value="" selected="selected"></option>
+							<option value="0">NA</option>
+							<option value="3">CL</option>							
+							<option value="11">11</option>
+							<option value="31">31</option>
+							<option value="51">51</option>
+						</select>
+
+									<div [hidden]="a51PenaltyCode.valid || a51PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+								<div class="col-sm-1">
+									<select class="form-control form-control-sm" id="a52PenaltyCode" required [(ngModel)]="model.a52PenaltyCode" name="a52PenaltyCode"
+										#a52PenaltyCode="ngModel">
+							<option value="" selected="selected"></option>
+							<option value="0">NA</option>
+							<option value="3">CL</option>						
+							<option value="11">11</option>
+							<option value="31">31</option>
+							<option value="51">51</option>
+						</select>
+
+									<div [hidden]="a52PenaltyCode.valid || a52PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+								<div class="col-sm-1">
+									<select class="form-control form-control-sm" id="a53PenaltyCode" required [(ngModel)]="model.a53PenaltyCode" name="a53PenaltyCode"
+										#a53PenaltyCode="ngModel">
+							<option value="" selected="selected"></option>
+							<option value="0">NA</option>
+							<option value="3">CL</option>							
+							<option value="11">11</option>
+							<option value="31">31</option>
+							<option value="51">51</option>
+						</select>
+
+									<div [hidden]="a53PenaltyCode.valid || a53PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+								<div class="col-sm-1">
+									<select class="form-control form-control-sm" id="a54PenaltyCode" required [(ngModel)]="model.a54PenaltyCode" name="a54PenaltyCode"
+										#a54PenaltyCode="ngModel">
+							<option value="" selected="selected"></option>
+							<option value="0">NA</option>
+							<option value="3">CL</option>							
+							<option value="11">11</option>
+							<option value="31">31</option>
+							<option value="51">51</option>
+						</select>
+
+									<div [hidden]="a54PenaltyCode.valid || a54PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<div class="col-sm-1">
+									<span><b>5B</b></span>
+								</div>
+								<label for="b51PenaltyCode" class="col-sm-6 col-form-label">Is there evidence of the application of fertilisers or soiled water to land that is waterlogged, flooded, snow covered, frozen or when heavy rain is forecast?</label>
+								<div class="col-sm-1">
+									<select class="form-control form-control-sm" id="b51PenaltyCode" required [(ngModel)]="model.b51PenaltyCode" name="b51PenaltyCode"
+										#b51PenaltyCode="ngModel">
+							<option value="" selected="selected"></option>
+							<option value="0">NA</option>
+							<option value="3">CL</option>							
+							<option value="11">11</option>
+							<option value="31">31</option>
+							<option value="51">51</option>
+						</select>
+
+									<div [hidden]="b51PenaltyCode.valid || b51PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+								<div class="col-sm-1">
+									<select class="form-control form-control-sm" id="b52PenaltyCode" required [(ngModel)]="model.b52PenaltyCode" name="b52PenaltyCode"
+										#b52PenaltyCode="ngModel">
+							<option value="" selected="selected"></option>
+							<option value="0">NA</option>
+							<option value="3">CL</option>						
+							<option value="11">11</option>
+							<option value="31">31</option>
+							<option value="51">51</option>
+						</select>
+
+									<div [hidden]="b52PenaltyCode.valid || b52PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+								<div class="col-sm-1">
+									<select class="form-control form-control-sm" id="b53PenaltyCode" required [(ngModel)]="model.b53PenaltyCode" name="b53PenaltyCode"
+										#b53PenaltyCode="ngModel">
+							<option value="" selected="selected"></option>
+							<option value="0">NA</option>
+							<option value="3">CL</option>							
+							<option value="11">11</option>
+							<option value="31">31</option>
+							<option value="51">51</option>
+						</select>
+
+									<div [hidden]="b53PenaltyCode.valid || b53PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+								<div class="col-sm-1">
+									<select class="form-control form-control-sm" id="b54PenaltyCode" required [(ngModel)]="model.b54PenaltyCode" name="b54PenaltyCode"
+										#b54PenaltyCode="ngModel">
+							<option value="" selected="selected"></option>
+							<option value="0">NA</option>
+							<option value="3">CL</option>							
+							<option value="11">11</option>
+							<option value="31">31</option>
+							<option value="51">51</option>
+						</select>
+
+									<div [hidden]="b54PenaltyCode.valid || b54PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<div class="col-sm-1">
+									<span><b>5C</b></span>
+								</div>
+								<label for="c51PenaltyCode" class="col-sm-6 col-form-label">Is there evidence of the application of fertilisers or soiled water to steeply sloping ground where there is a significant risk of causing water pollution because of proximity to water, ground conditions, ground cover or rainfall?</label>
+								<div class="col-sm-1">
+									<select class="form-control form-control-sm" id="c51PenaltyCode" required [(ngModel)]="model.c51PenaltyCode" name="c51PenaltyCode"
+										#c51PenaltyCode="ngModel">
+							<option value="" selected="selected"></option>
+							<option value="0">NA</option>
+							<option value="3">CL</option>							
+							<option value="11">11</option>
+							<option value="31">31</option>
+							<option value="51">51</option>
+						</select>
+
+									<div [hidden]="c51PenaltyCode.valid || c51PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+								<div class="col-sm-1">
+									<select class="form-control form-control-sm" id="c52PenaltyCode" required [(ngModel)]="model.c52PenaltyCode" name="c52PenaltyCode"
+										#c52PenaltyCode="ngModel">
+							<option value="" selected="selected"></option>
+							<option value="0">NA</option>
+							<option value="3">CL</option>						
+							<option value="11">11</option>
+							<option value="31">31</option>
+							<option value="51">51</option>
+						</select>
+
+									<div [hidden]="c52PenaltyCode.valid || c52PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+								<div class="col-sm-1">
+									<select class="form-control form-control-sm" id="c53PenaltyCode" required [(ngModel)]="model.c53PenaltyCode" name="c53PenaltyCode"
+										#c53PenaltyCode="ngModel">
+							<option value="" selected="selected"></option>
+							<option value="0">NA</option>
+							<option value="3">CL</option>							
+							<option value="11">11</option>
+							<option value="31">31</option>
+							<option value="51">51</option>
+						</select>
+
+									<div [hidden]="c53PenaltyCode.valid || c53PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+								<div class="col-sm-1">
+									<select class="form-control form-control-sm" id="c54PenaltyCode" required [(ngModel)]="model.c54PenaltyCode" name="c54PenaltyCode"
+										#c54PenaltyCode="ngModel">
+							<option value="" selected="selected"></option>
+							<option value="0">NA</option>
+							<option value="3">CL</option>							
+							<option value="11">11</option>
+							<option value="31">31</option>
+							<option value="51">51</option>
+						</select>
+
+									<div [hidden]="c54PenaltyCode.valid || c54PenaltyCode.pristine" class="alert alert-danger">{{requiredField}}</div>
+								</div>
+							</div>
+						</template>
+					</ngb-panel>
+					<!-- end of section 5 -->
+
+				</ngb-accordion>
+			</form>
+			<!-- end of Nitrates form-->
+		</div>
+	</div>
+</div>

@@ -6,5 +6,4 @@ export class InspectionDetails{
     onlineApplicant : boolean;
     outFor : string;
     schemeYear : number;
-
 }

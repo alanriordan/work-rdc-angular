@@ -3,8 +3,7 @@ import {InspectionDetails} from '../common/inspection-details';
 import {AfitService} from '../service/afit.service';
 import {Router} from '@angular/router';
 
-@Component({
-   // selector : 'rdc-dashboard',
+@Component({   
     templateUrl : 'app/dashboard/dashboard.component.html'
 })
 export class DashboardComponent implements OnInit, OnDestroy{
@@ -25,7 +24,7 @@ export class DashboardComponent implements OnInit, OnDestroy{
     }
 
     selectInsepction(inspection:InspectionDetails):void{
-        this.router.navigate(['container', inspection.inspectionInstanceNumber]);
+        this.router.navigate(['container', inspection.inspectionInstanceNumber, 'summary']);
     }
 
 }

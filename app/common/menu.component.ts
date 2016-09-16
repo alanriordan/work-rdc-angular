@@ -12,9 +12,10 @@ export class MenuComponent implements OnInit{
     @Input()
     smrDetails:SmrDetails[];
 
-    smrActivated: number;
     @Input()
-    dashboardSelected:boolean = true;
+    instanceNum:number;
+   
+    smrActivated: number;    
 
     constructor(private router:Router){};
 
@@ -28,16 +29,15 @@ export class MenuComponent implements OnInit{
     }
 
     goToSmr(smrCode:number):void{        
-        this.smrActivated = smrCode;
-        this.dashboardSelected = this.smrActivated == -1;
-        var smrDetail = this.getSmrDetailsFromCode(smrCode);
-        const url = `${smrDetail.route}`;
-        console.log(url);
-        this.router.navigate([url]);
+        this.smrActivated = smrCode;       
+        var smrDetail = this.getSmrDetailsFromCode(smrCode);         
+        this.router.navigate(['container',this.instanceNum,smrDetail.route]);
     }
 
 
     getSmrDetailsFromCode(code:number):SmrDetails{
         return SmrCodes.filter(smrCode => smrCode.code == code)[0];
     }
+
+    
 }
