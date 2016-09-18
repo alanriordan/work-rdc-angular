@@ -4,8 +4,13 @@
 
         <div class="row" *ngFor="let inspectionDetail of inspectionDetails">
           <div class="card">
-              <p>{{inspectionDetail.inspectionInstanceNumber}}</p>
+            <div class="col-md-3">
               <a (click)="selectInsepction(inspectionDetail)">{{inspectionDetail.herdNumber}}</a>
+            </div>
+            <div class="col-md-4">
+              <inspection-staus completedSmr="2" numOfSmr="{{inspectionDetail.outFor}}"></inspection-staus>
+            </div>
+             
           </div>
         </div>
 

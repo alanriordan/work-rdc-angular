@@ -4,7 +4,7 @@
             <div class="navbar navbar-static-top navbar-dark bg-inverse">
                 <div class="container-fluid">                    
                     <a href="#" class="navbar-brand">Dashboard</a>
-                    <span class="pull-xs-right"><a href="#" class="navbar-brand text-xs-right">Log Out</a></span>
+                    <span class="pull-xs-right"><a href="/dashboard" class="navbar-brand text-xs-right" [class.disabled]="offline">Log Out</a></span>
                 </div>
             </div>
 
@@ -13,9 +13,12 @@
                     <h1 class="jumbotron-heading">Remote Data Capture</h1>
                     <p class="lead text-muted"></p>
                     <p>
-                        <a href="#" class="btn btn-primary">Send Completed Cases</a>
-                        <a href="#" class="btn btn-secondary">Update Inspection List</a>
-                        {{offline}}
+                        <a href="#" class="btn btn-primary" [class.disabled]="offline">Send Completed Cases</a>
+                        <a href="#" class="btn btn-secondary" [class.disabled]="offline">Update Inspection List</a>
+                        
+                    </p>
+                    <p>
+                        <span *ngIf="offline" style="color:red">Offline Mode</span>
                     </p>
                 </div>
             </section>
