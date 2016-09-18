@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, AfterViewInit} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
 import {SmrCodes, SmrDetails} from '../common/smr-codes';
 import {AfitService} from '../service/afit.service';
+import {BaseModel} from '../common/base-model';
+import {Subscription} from 'rxjs';
 
 
 @Component({
@@ -9,14 +11,25 @@ import {AfitService} from '../service/afit.service';
 })
 export class SummaryComponent implements OnInit{
 
+    selectedInstance:number;
+    data:BaseModel;
+    smrStatus:string;
+    sub:Subscription;
     constructor(private route:ActivatedRoute){};
 
   
  ngOnInit():void{
-        this.route.params.subscribe(params=>{
-            let id = +params['id'];           
-            console.log("Summary " + id);
-        });        
+        this.sub = this.route.parent.url.subscribe(params=>{
+        this.selectedInstance = +params[1].path;
+    })       
+    }
+
+    ngAfterViewInit():void{
+        this.data = JSON.parse(localStorage.getItem(this.selectedInstance+""));
+        if(this.data){
+            this.smrStatus = this.data.smrStatus;
+        }
+        
     }
 
 }
