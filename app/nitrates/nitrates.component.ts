@@ -10,9 +10,7 @@ import {BaseModel} from '../common/base-model';
 export class NitratesComponent implements OnInit, OnDestroy, AfterViewInit {
 
     requiredField = "This field is required";
-    model:BaseModel = new BaseModel();
-    smrFinished:boolean = false;
-    smrSaved:boolean = false;
+    model:BaseModel = new BaseModel();    
     sub:Subscription;
     selectedInstance:number;
     constructor( private router: Router,private route: ActivatedRoute) {}
@@ -36,13 +34,13 @@ export class NitratesComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   saveForm():void{     
-      this.model.smrStatus = "SAVED";
+      this.model.smrStatus = "Saved";
        console.log("Nitrates Data "+ this.model);
        localStorage.setItem(this.model.inspectionInstanceNumber+"", JSON.stringify(this.model));
   }
 
   finishForm():void{      
-      this.model.smrStatus = "FINISHED";
+      this.model.smrStatus = "Finished";
       console.log("Finished Inspection " + this.model);
       localStorage.setItem(this.model.inspectionInstanceNumber+"", JSON.stringify(this.model));
   }

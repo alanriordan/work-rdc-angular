@@ -11,21 +11,25 @@
             <td>SMR 1 Nitrates</td>
             <td>{{smrStatus}}</td>
             <td><input type="checkbox"></td>
+            <td *ngIf="smrStatus == 'Finished'"><button class="btn btn-primary">Upload to SPS</button></td>
         </tr>
         <tr>
             <td>GAEC 1 Buffers</td>
             <td></td>
             <td><input type="checkbox"></td>
+            <td></td>
         </tr>
          <tr>
             <td>SMR 7 Bovine</td>
             <td></td>
             <td><input type="checkbox"></td>
+             <td></td>
         </tr>
          <tr>
             <td>SMR 8 Ovine</td>
             <td></td>
             <td><input type="checkbox"></td>
+             <td></td>
         </tr>
     </tbody>
 
