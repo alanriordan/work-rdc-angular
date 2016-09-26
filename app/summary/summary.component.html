@@ -1,36 +1,35 @@
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <td>Description</td>
-            <td>Status</td>
-            <td>Adhoc</td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>SMR 1 Nitrates</td>
-            <td>{{smrStatus}}</td>
-            <td><input type="checkbox"></td>
-            <td *ngIf="smrStatus == 'Finished'"><button class="btn btn-primary">Upload to SPS</button></td>
-        </tr>
-        <tr>
-            <td>GAEC 1 Buffers</td>
-            <td></td>
-            <td><input type="checkbox"></td>
-            <td></td>
-        </tr>
-         <tr>
-            <td>SMR 7 Bovine</td>
-            <td></td>
-            <td><input type="checkbox"></td>
-             <td></td>
-        </tr>
-         <tr>
-            <td>SMR 8 Ovine</td>
-            <td></td>
-            <td><input type="checkbox"></td>
-             <td></td>
-        </tr>
-    </tbody>
 
-</table>    
+<div class="card">
+    <div class="card-block">
+        <div class="container">
+            <table class="table table-bordered table-sm table-hover" style="width:90%">
+                <thead class="thead-inverse">
+                    <tr>
+                        <td>Description</td>
+                        <td>Status</td>
+                        <td style="text-align:center">Adhoc</td>
+                        <td style="text-align:center">Actions</td>
+                    </tr>
+                </thead>
+                <tbody>
+                   <tr *ngFor="let smrCode of smrCodes">
+                       <td><a (click)="goToSmr(smrCode.code)">{{smrCode.formLabel}}</a></td>
+                       <td>{{getStatus(smrCode.code)}}</td>
+                       <td style="text-align:center">
+                           <label class="form-check-inline">
+                            <input type="checkbox" class="form-check-input" [value]="smrCode.code" [(ngModel)]="adHocList[smrCode.code]" [disabled]="inspectionExists(smrCode.code)">
+                           </label>
+                        </td>
+                        <td><span *ngIf="adHocExists(smrCode.code)"><button class="btn btn-primary-outline btn-sm" (click)="removeAdHoc(smrCode.code)">Remove Ad Hoc</button></span></td>
+                   </tr>
+                   <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td style="text-align:center"><button class="btn btn-primary-outline btn-sm" (click)="createAdHoc()" [disabled]="adHocList.length==0">Create Addhoc</button></td>
+                   </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>

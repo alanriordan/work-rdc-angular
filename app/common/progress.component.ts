@@ -7,7 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class ProgressComponent implements OnInit{
 
     @Input()
-    numOfSmr:string;
+    numOfSmr:number;
 
     @Input()
     completedSmr:number;
@@ -17,7 +17,7 @@ export class ProgressComponent implements OnInit{
     percentageComplete:number;
 
     ngOnInit():void{
-        this.smrTotal = this.numOfSmr.split(',').length;
+        this.smrTotal = this.numOfSmr;
         this.percentageComplete = Math.floor(this.completedSmr/this.smrTotal * 100);
     }
 

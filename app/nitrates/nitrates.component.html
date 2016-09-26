@@ -1,4 +1,4 @@
-<div class="card">	
+<div class="card">
 	<div class="card-block">
 		<div class="container">
 			<form #nitratesForm="ngForm">
@@ -872,6 +872,9 @@
 					<!-- end of section 5 -->
 
 				</ngb-accordion>
+				<button class="btn btn-primary btn-sm" (click)="back()">Back</button>
+				<button class="btn btn-primary btn-sm" [disabled]="!nitratesForm.form.valid" (click)="saveForm()">Save</button>
+				<button class="btn btn-primary btn-sm" [disabled]="!nitratesForm.form.valid" (click)="finishForm()">Finish</button>
 			</form>
 			<!-- end of Nitrates form-->
 		</div>

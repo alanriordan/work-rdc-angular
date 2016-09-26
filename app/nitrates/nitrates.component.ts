@@ -3,52 +3,60 @@ import {Router, ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {BaseModel} from '../common/base-model';
 
+import {InspectionDetails} from '../common/inspection-details';
+import {getSmrCodeFromRoute} from '../common/smr-codes';
+import {LocalStorageService} from '../service/localstorage.service';
 
-@Component({    
+
+@Component({
     templateUrl: 'app/nitrates/nitrates.component.html'
 })
 export class NitratesComponent implements OnInit, OnDestroy, AfterViewInit {
 
     requiredField = "This field is required";
-    model:BaseModel = new BaseModel();    
-    sub:Subscription;
-    selectedInstance:number;
-    constructor( private router: Router,private route: ActivatedRoute) {}
+    model: BaseModel = new BaseModel();
+    sub: Subscription;
+    routepath: string;
+    selectedInstance: number;
+    selectedInspection: InspectionDetails;
 
-    ngAfterViewInit():void{
-        this.model = JSON.parse(localStorage.getItem(this.selectedInstance+""));
+    constructor(private router: Router, private route: ActivatedRoute,
+        private localStorageService: LocalStorageService) { }
+
+    ngAfterViewInit(): void {
+        let savedData = this.localStorageService.getObjectData(String(this.selectedInstance));
+        if (savedData){
+            this.model = savedData;
+        }        
     }
 
     ngOnInit() {
-    
-    this.sub = this.route.parent.url.subscribe(params=>{
-        this.selectedInstance = +params[1].path;
-    })
-    this.model.agr="agr0776";
-    this.model.inspectionInstanceNumber=this.selectedInstance;
-    
-    
-    console.log("NitratesId " + this.model);
-    
-     
-  }
+        this.sub = this.route.parent.url.subscribe(params => {
+            this.selectedInstance = +params[1].path;
+        })
+        this.model.inspectionInstanceNumber = this.selectedInstance;        
+    }
 
-  saveForm():void{     
-      this.model.smrStatus = "Saved";
-       console.log("Nitrates Data "+ this.model);
-       localStorage.setItem(this.model.inspectionInstanceNumber+"", JSON.stringify(this.model));
-  }
+    back(): void {
+        window.history.back();
+    }
 
-  finishForm():void{      
-      this.model.smrStatus = "Finished";
-      console.log("Finished Inspection " + this.model);
-      localStorage.setItem(this.model.inspectionInstanceNumber+"", JSON.stringify(this.model));
-  }
+    saveForm(): void {
+        this.model.smrStatus = "Saved";
+        console.log("Nitrates Data " + this.model);
+        localStorage.setItem(this.model.inspectionInstanceNumber + "", JSON.stringify(this.model));
+    }
 
-  ngOnDestroy() {
-   this.sub.unsubscribe();
-  }
+    finishForm(): void {
+        this.model.smrStatus = "Finished";
+        console.log("Finished Inspection " + this.model);
+        localStorage.setItem(this.model.inspectionInstanceNumber + "", JSON.stringify(this.model));
+    }
 
-   
+    ngOnDestroy() {
+        this.sub.unsubscribe();
+    }
+
+
 
 }

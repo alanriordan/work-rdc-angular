@@ -12,10 +12,10 @@ export class OnlineService{
     checkIfOnline():Promise<boolean>{
         var headers = new Headers();
         headers.append('Access-Control-Allow-Origin', '*');
-        return this.http.get("http://localhost:3000/dashboard")
-        .toPromise().then((r:Response) => r.ok);
+       // return this.http.get("http://localhost:3000/dashboard")
+       // .toPromise().then((r:Response) => r.ok);
         
-        //return online;
+        return Promise.resolve(true);
     }
 
 }

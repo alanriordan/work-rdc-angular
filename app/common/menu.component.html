@@ -5,13 +5,13 @@
         </li>
 
 
-        <li class="nav-item" [class.active]="isBreadcrumbActive(-1)">
-            <a (click)="goToSmr(-1)" class="nav-link" [class.disabled]="isBreadcrumbActive(-1)">Summary</a>             
+        <li class="nav-item" [class.active]="isBreadcrumbActive('summary')">
+            <a (click)="goToSmr(-1)" class="nav-link" [class.disabled]="isBreadcrumbActive('summary')">Summary</a>             
         </li>
 
 
-        <li class="nav-item" [class.active]="isBreadcrumbActive(smrDetail.code)" *ngFor="let smrDetail of smrDetails">
-            <a (click)="goToSmr(smrDetail.code)" class="nav-link" [class.disabled]="isBreadcrumbActive(smrDetail.code)">{{smrDetail.label}}</a>             
+        <li class="nav-item" [class.active]="isBreadcrumbActive(smrDetail.route)" *ngFor="let smrDetail of smrDetails">
+            <a (click)="goToSmr(smrDetail.code)" class="nav-link" [class.disabled]="isBreadcrumbActive(smrDetail.route)">{{smrDetail.tabLabel}}</a>             
         </li>
     </ul>
 </nav>

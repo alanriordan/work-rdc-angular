@@ -1,16 +1,18 @@
- 
-<div class="album text-muted">
-      <div class="container">
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4 col-md-3" *ngFor="let inspectionDetail of inspectionDetails" (click)="selectInsepction(inspectionDetail)">
+      <div class="thumbnail">
+        <div class="content">
+          <div class="text-xs-center">
+            <h5>{{inspectionDetail.herdNumber}}</h5>
+            <i>{{inspectionDetail.farmerDetails.firstName + " " +inspectionDetail.farmerDetails.surname}}</i></div>
+          <div style="margin-bottom:5px">
 
-        <div class="row" *ngFor="let inspectionDetail of inspectionDetails">
-          <div class="card">
-            <div class="col-md-3">
-              <a (click)="selectInsepction(inspectionDetail)">{{inspectionDetail.herdNumber}}</a>
-            </div>
-            <div class="col-md-4">
-              <inspection-staus completedSmr="2" numOfSmr="{{inspectionDetail.outFor}}"></inspection-staus>
-            </div>
-             
+            <inspection-staus completedSmr="2" numOfSmr="{{getNumOfSmr(inspectionDetail)}}"></inspection-staus>
           </div>
         </div>
 
+      </div>
+    </div>
+  </div>
+</div>

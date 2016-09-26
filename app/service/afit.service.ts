@@ -13,6 +13,4 @@ export class AfitService{
     getInspectionDetails():Promise<InspectionDetails[]>{
         return Promise.resolve(InsepctionDetailsMock);
     }  
-
-
 }
