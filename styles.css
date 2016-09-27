@@ -140,3 +140,36 @@ nav a.router-link-active {
 * { 
   font-family: Arial, Helvetica, sans-serif; 
 }
+
+
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
+}
+
+
+.thumbnail {
+  padding: 0;  
+  border-radius: 10px;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.22);
+  margin-bottom: 5px;
+  position: relative;
+}
+
+.thumbnail .img-responsive {
+  border-radius: 10px 10px 0px 0px;
+}
+
+.thumbnail > div {
+    display: none
+}
+.thumbnail > div:first-child {
+    display: block
+}
+.thumbnail:hover > div {
+    display: block;
+     box-shadow: 0 5px 10px 0 rgba(0,0,0,0.22);
+}

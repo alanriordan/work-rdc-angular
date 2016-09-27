@@ -42,8 +42,8 @@ export class SummaryComponent implements OnInit {
     inspectionExists(smrCode: number): boolean {
         let exists = false;
         if (this.selectedInspection.adHoc) {
-            exists = this.selectedInspection.adHoc.indexOf(smrCode) > 0
-                || this.selectedInspection.outFor.indexOf(smrCode) > 0;
+            exists = this.selectedInspection.adHoc.indexOf(smrCode) >= 0
+                || this.selectedInspection.outFor.indexOf(smrCode) >= 0;
         }
         return exists;
     }
@@ -51,7 +51,7 @@ export class SummaryComponent implements OnInit {
     adHocExists(smrCode: number): boolean {
         let exists = false;
         if (this.selectedInspection.adHoc) {
-            exists = this.selectedInspection.adHoc.indexOf(smrCode) > 0;
+            exists = this.selectedInspection.adHoc.indexOf(smrCode) >= 0;
         }
         return exists;
     }
@@ -65,11 +65,13 @@ export class SummaryComponent implements OnInit {
             return smrCode;
         })
         this.selectedInspection = this.summaryService.createAdHoc("agr0776", smrCodes, this.selectedInstance);
+        this.inspectionDetailsService.updateInspection("agr0776", this.selectedInspection, this.selectedInstance);
         this.adHocList = [];
     }
 
     removeAdHoc(smrCode:number):void{        
         this.selectedInspection = this.summaryService.removeAdHoc("agr0776", smrCode, this.selectedInstance);
+        this.inspectionDetailsService.updateInspection("agr0776", this.selectedInspection, this.selectedInstance);
        
     }
 

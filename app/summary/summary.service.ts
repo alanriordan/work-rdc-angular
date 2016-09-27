@@ -28,7 +28,7 @@ export class SummaryService{
             })           
             modifiedInspection = inspectionDetail;
         });
-        this.localStorageService.saveObjectData(agr, inspectionDetails);
+        //this.localStorageService.saveObjectData(agr, inspectionDetails);
         return modifiedInspection;
     }
 
@@ -41,8 +41,7 @@ export class SummaryService{
                  index == -1 ?  inspectionDetail.adHoc : inspectionDetail.adHoc.splice(index, 1);
                                   
             modifiedInspection = inspectionDetail;
-        });
-        this.localStorageService.saveObjectData(agr, inspectionDetails);
+        });       
         return modifiedInspection;
     }
 
