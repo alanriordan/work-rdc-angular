@@ -2,8 +2,8 @@ import {Component, Output, OnInit, OnDestroy, AfterViewInit} from '@angular/core
 import {Router, ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {BaseModel} from '../common/base-model';
-
-import {InspectionDetails} from '../common/inspection-details';
+import {InspectionDetailsService} from '../common/inspection-details.service';
+import {InspectionDetails, SmrStatus} from '../common/inspection-details';
 import {getSmrCodeFromRoute} from '../common/smr-codes';
 import {LocalStorageService} from '../service/localstorage.service';
 
@@ -21,7 +21,7 @@ export class NitratesComponent implements OnInit, OnDestroy, AfterViewInit {
     selectedInspection: InspectionDetails;
 
     constructor(private router: Router, private route: ActivatedRoute,
-        private localStorageService: LocalStorageService) { }
+        private localStorageService: LocalStorageService, private inspectionDetailsService:InspectionDetailsService) { }
 
     ngAfterViewInit(): void {
         let savedData = this.localStorageService.getObjectData(String(this.selectedInstance));
@@ -41,16 +41,14 @@ export class NitratesComponent implements OnInit, OnDestroy, AfterViewInit {
         window.history.back();
     }
 
-    saveForm(): void {
-        this.model.smrStatus = "Saved";
-        console.log("Nitrates Data " + this.model);
-        localStorage.setItem(this.model.inspectionInstanceNumber + "", JSON.stringify(this.model));
+    saveForm(): void {       
+        let details = this.inspectionDetailsService.getSelectedInspection("agr0776", this.selectedInstance);   
+        this.inspectionDetailsService.updateStatus("agr0776", 13, SmrStatus.saved , details);        
     }
 
     finishForm(): void {
-        this.model.smrStatus = "Finished";
-        console.log("Finished Inspection " + this.model);
-        localStorage.setItem(this.model.inspectionInstanceNumber + "", JSON.stringify(this.model));
+       let details = this.inspectionDetailsService.getSelectedInspection("agr0776", this.selectedInstance);   
+       this.inspectionDetailsService.updateStatus("agr0776", 13, SmrStatus.finished , details);
     }
 
     ngOnDestroy() {

@@ -1,0 +1,176 @@
+<div class="card">
+    <div class="card-block">
+        <div class="container">
+            <form #groundWaterForm="ngForm">
+                <ngb-accordion #acc="ngbAccordion">
+                    <ngb-panel title="Details">
+                        <template ngbPanelContent>
+                            <div class="form-group row">
+                                <label for="inspDate" class="col-md-2 col-form-label">Inspection Date</label>
+                                <div class="col-md-2">
+                                    <input type="date" class="form-control form-control-sm" id="inspDate" required ngModel name="inspDate" #inspDate="ngModel">
+                                </div>
+                                <label for="reasonNotCompleted" class="col-md-4 col-form-label"> Reason Inspection Not
+									Completed</label>
+                                <div class="col-md-3">
+                                    <select class="form-control form-control-sm" id="reasonNotCompleted" required ngModel name="reasonNotCompleted" #reasonNotCompleted="ngModel">
+                                        <option selected="selected" value="-9999">NA</option>
+                                        <option value="1">Early Retirement</option>
+                                        <option value="2">Refusal to Co-operate</option>
+                                        <option value="3">SMR Deferred to Next Year</option>
+                                        <option value="4">Other</option>
+								    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="checkbox">
+                                    <label class="col-sm-8 col-form-label ">Force
+										Majeure<input type="checkbox"
+										ngModel id="forceMajeureInd"
+										#forceMajeureInd="ngModel" name="forceMajeureInd"></label>
+                                </div>
+                            </div>
+                        </template>
+                    </ngb-panel>
+                    <ngb-panel title="Group 1">
+                       
+                        <template ngbPanelContent>
+                              <div class="form-group row">
+                                  <div class="col-md-8">
+                                      <span class="font-weight-bold">GAEC 3 - Protection of Groundwater against pollution</span>
+                                  </div>  
+                                  <div class="col-md-2 offset-sm-1">
+                                      <span class="font-weight-bold">LPIS Number</span>
+                                  </div> 
+                                  <div class="col-md-1">
+                                      <span class="font-weight-bold">code</span>
+                                  </div> 
+                              </div>
+                              <!-- start of 3A -->
+                              <div class="form-group form-group-sm row">
+                                  <div class="col-md-1">
+                                      <span class="font-weight-bold">3A</span>
+                                  </div>  
+                                  <label for="gaec3Q1Answer" class="col-md-7 col-form-label">Is there evidence of direct or indirect discharge of chemical fertilisers/agri chemicals, (including plant protection products and biocides) hydrocarbons/waste oils or other List 1 substances to groundwater/water sources?</label>
+                                  
+                                  <div class="col-md-1">
+                                       <select class="form-control form-control-sm" id="gaec3Q1Answer" required ngModel name="gaec3Q1Answer" #gaec3Q1Answer="ngModel">
+                                            <option value="" selected="selected"> </option>
+                                            <option value="0">NA</option>
+                                            <option value="1">Yes</option>
+                                            <option value="2">CL</option>
+                                            
+								     </select>
+                                  </div> 
+                                  <div class="col-md-2" *ngIf="gaec3Q1Answer.value == 1">
+                                      <input type="text" class="form-control form-control-sm" ngModel name="gaec3Q1LPISNum" id="gaec3Q1LPISNum" #gaec3Q1LPISNum="ngModel">
+                                  </div>
+                                  <div class="col-md-1" *ngIf="gaec3Q1Answer.value == 1">
+                                       <select class="form-control form-control-sm" id="gaec3Q1Transgression" ngModel name="gaec3Q1Transgression" #gaec3Q1Transgression="ngModel">
+                                           <option value=""></option>
+                                            <option value="1">4</option>
+                                            <option value="2">8</option>
+                                            <option value="3">11</option>
+                                            <option value="4">31</option>
+                                            <option value="5">51</option>                                            
+								     </select>
+                                  </div> 
+                              </div> <!-- end of 3A -->
+                              <!-- start of 3B -->
+                              <div class="form-group form-group-sm row">
+                                  <div class="col-md-1">
+                                      <span class="font-weight-bold">3B</span>
+                                  </div>  
+                                  <label for="gaec3Q2Answer" class="col-md-7 col-form-label">Is there evidence of poor management of Sheep dip including land spreading and buffer zones? </label>
+                                  
+                                  <div class="col-md-1">
+                                       <select class="form-control form-control-sm" id="gaec3Q2Answer" required ngModel name="gaec3Q2Answer" #gaec3Q2Answer="ngModel">
+                                            <option value="" selected="selected"> </option>
+                                            <option value="0">NA</option>
+                                            <option value="1">Yes</option>
+                                            <option value="2">CL</option>
+                                            
+								     </select>
+                                  </div> 
+                                  <div class="col-md-2" *ngIf="gaec3Q2Answer.value == 1">
+                                      <input type="text" class="form-control form-control-sm" ngModel name="gaec3Q2LPISNum" id="gaec3Q2LPISNum" #gaec3Q2LPISNum="ngModel">
+                                  </div>
+                                  <div class="col-md-1" *ngIf="gaec3Q2Answer.value == 1">
+                                       <select class="form-control form-control-sm" id="gaec3Q2Transgression" ngModel name="gaec3Q2Transgression" #gaec3Q2Transgression="ngModel">
+                                           <option value=""></option>
+                                            <option value="1">4</option>
+                                            <option value="2">8</option>
+                                            <option value="3">11</option>
+                                            <option value="4">31</option>
+                                            <option value="5">51</option>                                           
+								     </select>
+                                  </div> 
+                              </div> <!-- end of 3B -->
+                               <!-- start of 3C -->
+                              <div class="form-group form-group-sm row">
+                                  <div class="col-md-1">
+                                      <span class="font-weight-bold">3C</span>
+                                  </div>  
+                                  <label for="gaec3Q3Answer" class="col-md-7 col-form-label">Is there evidence of direct or indirect discharges of spent sheep dip to groundwater/water sources? </label>
+                                  
+                                  <div class="col-md-1">
+                                       <select class="form-control form-control-sm" id="gaec3Q3Answer" required ngModel name="gaec3Q3Answer" #gaec3Q3Answer="ngModel">
+                                            <option value="" selected="selected"> </option>
+                                            <option value="0">NA</option>
+                                            <option value="1">Yes</option>
+                                            <option value="2">CL</option>
+                                            
+								     </select>
+                                  </div> 
+                                  <div class="col-md-2" *ngIf="gaec3Q3Answer.value == 1">
+                                      <input type="text" class="form-control form-control-sm" ngModel name="gaec3Q3LPISNum" id="gaec3Q3LPISNum" #gaec3Q3LPISNum="ngModel">
+                                  </div>
+                                  <div class="col-md-1" *ngIf="gaec3Q3Answer.value == 1">
+                                       <select class="form-control form-control-sm" id="gaec3Q3Transgression" ngModel name="gaec3Q3Transgression" #gaec3Q3Transgression="ngModel">
+                                           <option value=""></option>
+                                            <option value="3">11</option>
+                                            <option value="4">31</option>
+                                            <option value="5">51</option>                                           
+								     </select>
+                                  </div> 
+                              </div> <!-- end of 3C -->
+                               <!-- start of 3D -->
+                              <div class="form-group form-group-sm row">
+                                  <div class="col-md-1">
+                                      <span class="font-weight-bold">3D</span>
+                                  </div>  
+                                  <label for="gaec3Q4Answer" class="col-md-7 col-form-label">Other discharges either direct or indirect of List 2 substances including where animals have been disposed of on the farm has the disposal endangered groundwater? </label>
+                                  
+                                  <div class="col-md-1">
+                                       <select class="form-control form-control-sm" id="gaec3Q4Answer" required ngModel name="gaec3Q4Answer" #gaec3Q4Answer="ngModel">
+                                            <option value="" selected="selected"> </option>
+                                            <option value="0">NA</option>
+                                            <option value="1">Yes</option>
+                                            <option value="2">CL</option>
+                                            
+								     </select>
+                                  </div> 
+                                  <div class="col-md-2" *ngIf="gaec3Q4Answer.value == 1">
+                                      <input type="text" class="form-control form-control-sm" ngModel name="gaec3Q4LPISNum" id="gaec3Q4LPISNum" #gaec3Q4LPISNum="ngModel">
+                                  </div>
+                                  <div class="col-md-1" *ngIf="gaec3Q4Answer.value == 1">
+                                       <select class="form-control form-control-sm" id="gaec3Q4Transgression" ngModel name="gaec3Q4Transgression" #gaec3Q4Transgression="ngModel">
+                                          <option value=""></option>
+                                            <option value="1">4</option>
+                                            <option value="3">11</option>
+                                            <option value="4">31</option>
+                                            <option value="5">51</option>                                           
+								     </select>
+                                  </div> 
+                              </div> <!-- end of 3D -->
+                        </template>
+                        
+                    </ngb-panel>
+                </ngb-accordion>
+                <button class="btn btn-default btn-sm" (click)="back()">Back</button>
+				<button class="btn btn-default btn-sm" [disabled]="!groundWaterForm.form.valid" (click)="saveForm(groundWaterForm.value)">Save</button>
+				<button class="btn btn-default btn-sm" [disabled]="!groundWaterForm.form.valid" (click)="finishForm(groundWaterForm.value)">Finish</button>
+            </form>
+        </div>
+    </div>
+</div>

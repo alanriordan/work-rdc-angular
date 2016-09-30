@@ -20,22 +20,20 @@ export class ContainerComponent implements OnInit, OnDestroy, AfterContentInit {
     private selectedHerd: string;
 
     constructor(private route: ActivatedRoute, private afitService: AfitService, private localStorageService: LocalStorageService,
-    inspectionDetailsService:InspectionDetailsService) { 
-        inspectionDetailsService.inspectionUpdated$.subscribe(
-            (details:InspectionDetails[]) => {
-                this.inspectionDetails = details;
-                this.getOutForListForInspection("agr0776", this.selectedInstance);
-            
-            })
+    private inspectionDetailsService:InspectionDetailsService) {         
     };
 
     ngOnInit(): void {
         this.sub = this.route.params.subscribe(params => {
             let id = +params['id'];
-            this.selectedInstance = id;
-            //this.getOutForListForInspection("agr0776", this.selectedInstance);
-            console.log(id);
+            this.selectedInstance = id;            
         });
+
+        this.inspectionDetailsService.inspectionUpdated$.subscribe(
+            (details:InspectionDetails[]) => {
+                this.inspectionDetails = details;
+                this.getOutForListForInspection("agr0776", this.selectedInstance);            
+            })
     }
 
 

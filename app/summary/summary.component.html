@@ -1,4 +1,3 @@
-
 <div class="card">
     <div class="card-block">
         <div class="container">
@@ -13,14 +12,21 @@
                 </thead>
                 <tbody>
                    <tr *ngFor="let smrCode of smrCodes">
-                       <td><a (click)="goToSmr(smrCode.code)">{{smrCode.formLabel}}</a></td>
-                       <td>{{getStatus(smrCode.code)}}</td>
+                       <td><a [routerLink]="['/container',selectedInstance,smrCode.route]">{{smrCode.formLabel}}</a></td>
+                       <td>{{getStatusText(smrCode.code)}}</td>
                        <td style="text-align:center">
                            <label class="form-check-inline">
                             <input type="checkbox" class="form-check-input" [value]="smrCode.code" [(ngModel)]="adHocList[smrCode.code]" [disabled]="inspectionExists(smrCode.code)">
                            </label>
                         </td>
-                        <td><span *ngIf="adHocExists(smrCode.code)"><button class="btn btn-primary-outline btn-sm" (click)="removeAdHoc(smrCode.code)">Remove Ad Hoc</button></span></td>
+                        <td>
+                            <span *ngIf="adHocExists(smrCode.code) && getStatusText(smrCode.code) == 'initial'">
+                                <button class="btn btn-primary-outline btn-sm fa fa-times" (click)="removeAdHoc(smrCode.code)">Ad Hoc</button>                                
+                            </span>
+                            <span *ngIf="isCaseFinished(smrCode.code)">
+                                <button class="btn btn-primary-outline btn-sm fa fa-upload">Upload</button>                                
+                            </span>
+                        </td>
                    </tr>
                    <tr>
                         <td>&nbsp;</td>

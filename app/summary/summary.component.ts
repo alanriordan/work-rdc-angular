@@ -4,7 +4,7 @@ import {SmrCodes, SmrDetails} from '../common/smr-codes';
 import {AfitService} from '../service/afit.service';
 import {BaseModel} from '../common/base-model';
 import {Subscription} from 'rxjs';
-import {InspectionDetails} from '../common/inspection-details';
+import {InspectionDetails, InspectionStatus, SmrStatus} from '../common/inspection-details';
 import {InspectionDetailsService} from '../common/inspection-details.service';
 import {SummaryService} from './summary.service';
 
@@ -56,8 +56,23 @@ export class SummaryComponent implements OnInit {
         return exists;
     }
 
-    getStatus(smrCode: number): string {
-        return "";
+    getStatusText(smrCode:number){
+        return SmrStatus[this.getStatus(smrCode)];
+    }
+
+    getStatus(smrCode: number): number {
+        let status = 0;
+        let inspectionStatus:InspectionStatus = this.selectedInspection.status.filter(inspectionStatus => {
+            return inspectionStatus.smrCode == smrCode;
+        })[0];
+        if (inspectionStatus){
+            status = inspectionStatus.smrStatus;
+        }
+        return status;        
+    }
+
+    isCaseFinished(smrCode:number){
+        return this.getStatus(smrCode) == 2;
     }
 
     createAdHoc():void{

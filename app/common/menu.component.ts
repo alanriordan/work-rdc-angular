@@ -1,13 +1,15 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, OnDestroy} from '@angular/core';
 import {SmrDetails, SmrCodes} from '../common/smr-codes';
 import {Router, ActivatedRoute} from '@angular/router';
-
+import {Subscription} from 'rxjs';
+import {InspectionDetailsService} from '../common/inspection-details.service';
+import {InspectionDetails, SmrStatus} from '../common/inspection-details';
 
 @Component({
     selector :'rdc-menu',
     templateUrl : 'app/common/menu.component.html'
 })
-export class MenuComponent implements OnInit{
+export class MenuComponent implements OnInit, OnDestroy{
 
     @Input()
     smrDetails:SmrDetails[];
@@ -15,13 +17,58 @@ export class MenuComponent implements OnInit{
     @Input()
     instanceNum:number;
    
-    smrActivated: number;    
+    smrActivated: number;  
+    instanceSub: Subscription; 
+    inspectionSub:Subscription; 
+    selectedInstance: number;
+    selectedInspection : InspectionDetails;
 
-    constructor(private router:Router, private activatedRoute:ActivatedRoute){};
+    constructor(private router:Router, private activatedRoute:ActivatedRoute, private inspectionDetailsService:InspectionDetailsService){};
 
     ngOnInit():void{
         this.smrActivated = -1;      
-        console.log(this.smrDetails);  
+        this.instanceSub = this.activatedRoute.url.subscribe(params => {
+            if (params){
+                this.selectedInstance = +params[1].path;
+                this.selectedInspection = this.inspectionDetailsService.getSelectedInspection("agr0776", this.selectedInstance);
+            }            
+        }) 
+
+        this.inspectionSub =  this.inspectionDetailsService.inspectionUpdated$.subscribe(
+            (details:InspectionDetails[]) => {
+                this.selectedInspection = this.inspectionDetailsService.getSelectedInspection("agr0776", this.selectedInstance);                          
+            })
+         
+    }
+
+    ngOnDestroy():void{
+        this.instanceSub.unsubscribe();
+        this.inspectionSub.unsubscribe();
+    }
+
+
+    getSmrStatus(smrCode:number):number{
+         let statusCode = 0;
+         let status = this.selectedInspection.status.filter(inspectionStatus => {
+            return inspectionStatus.smrCode == smrCode;
+        })[0];
+        status ? statusCode = status.smrStatus : 0;
+        return statusCode;
+    }
+
+
+    getSmrStatusStyle(smrCode:number):string{
+        let status = this.getSmrStatus(smrCode);
+        let color = "";
+        if(status){              
+            switch(status){
+                case SmrStatus.saved : color = "yellow";break;
+                case SmrStatus.finished : color = 'lightgreen';break;
+                case SmrStatus.complete : color ='orange'; break;
+            }
+        }
+        return color;
+
     }
 
     

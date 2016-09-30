@@ -1,5 +1,5 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {InspectionDetails} from '../common/inspection-details';
+import {InspectionDetails, SmrStatus} from '../common/inspection-details';
 import {AfitService} from '../service/afit.service';
 import {Router} from '@angular/router';
 import {LocalStorageService} from '../service/localstorage.service';
@@ -28,6 +28,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
             this.inspectionDetails = currentInspections;            
         }
 
+    }
+
+    getCompletedSmr(inspection:InspectionDetails):number{
+        let count = 0;
+        inspection.status.forEach(inspectionStatus => {
+            if (inspectionStatus.smrStatus == SmrStatus.finished){
+                count++;
+            }
+        })
+        return count;
     }
 
     getNumOfSmr(inspection:InspectionDetails):number{

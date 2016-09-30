@@ -3,8 +3,8 @@
         <div class="card-header text-xs-center">            
             <div class="navbar navbar-static-top navbar-dark bg-inverse">
                 <div class="container-fluid">                    
-                    <a href="#" class="navbar-brand">Dashboard</a>
-                    <span class="pull-xs-right"><a href="/dashboard" class="navbar-brand text-xs-right" [class.disabled]="offline">Log Out</a></span>
+                    <a href="#" class="navbar-brand"><span class="fa fa-home">Home</span></a>
+                    <span class="pull-xs-right"><a routerLink="/dashboard" class="navbar-brand text-xs-right" [class.disabled]="offline"><span class="fa fa-sign-out">Log Out</span></a></span>
                 </div>
             </div>
 
@@ -13,8 +13,8 @@
                     <h1 class="jumbotron-heading">Remote Data Capture</h1>
                     <p class="lead text-muted"></p>
                     <p>
-                        <a href="#" class="btn btn-primary" [class.disabled]="offline">Send Completed Cases</a>
-                        <a href="#" class="btn btn-secondary" [class.disabled]="offline">Update Inspection List</a>
+                        <a href="#" class="btn btn-primary fa fa-upload" [class.disabled]="offline">Upload Completed Cases</a>
+                        <a href="#" class="btn btn-secondary" [class.disabled]="offline"><span class=" fa fa-download">Download Inspections</span></a>
                         
                     </p>
                     <p>

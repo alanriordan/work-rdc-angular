@@ -7,11 +7,9 @@
             <h5>{{inspectionDetail.herdNumber}}</h5>
             <i>{{inspectionDetail.farmerDetails.firstName + " " +inspectionDetail.farmerDetails.surname}}</i></div>
           <div style="margin-bottom:5px">
-
-            <inspection-staus completedSmr="2" numOfSmr="{{getNumOfSmr(inspectionDetail)}}"></inspection-staus>
+            <inspection-staus completedSmr="{{getCompletedSmr(inspectionDetail)}}" numOfSmr="{{getNumOfSmr(inspectionDetail)}}"></inspection-staus>
           </div>
         </div>
-
       </div>
     </div>
   </div>
