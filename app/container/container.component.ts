@@ -1,6 +1,6 @@
 import {Component, OnInit, OnDestroy,AfterContentInit} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
-import {SmrCodes, SmrDetails} from '../common/smr-codes';
+import {SmrCodes, SmrDetails, SmrCode} from '../common/smr-codes';
 import {AfitService} from '../service/afit.service';
 import {LocalStorageService} from '../service/localstorage.service';
 import {InspectionDetails} from '../common/inspection-details';
@@ -13,7 +13,7 @@ export class ContainerComponent implements OnInit, OnDestroy, AfterContentInit {
 
     private smrDetails: SmrDetails[] = SmrCodes;
     private activeSmrs: SmrDetails[] = [];
-    private inspectionDetails:InspectionDetails[];
+    private inspectionDetails:InspectionDetails[];   
 
     private sub: any;
     private selectedInstance: number;

@@ -173,3 +173,14 @@ nav a.router-link-active {
     display: block;
      box-shadow: 0 5px 10px 0 rgba(0,0,0,0.22);
 }
+
+.table {
+    table-layout:fixed;
+}
+
+.table td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}

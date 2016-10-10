@@ -1,0 +1,67 @@
+<form [formGroup]="form">
+    <table class="table table-striped table-sm table-condensed">
+        <thead class="thead-inverse">
+            <tr>
+                <th></th>
+                <th *ngFor="let heading of headers">{{heading}}</th> 
+                <th>Total</th>               
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Weighting</td>
+                <td *ngFor="let heading of headers; let i = index">
+                    <input type="text" formControlName="{{'sec'+(i +1) + 'Total'}}" readonly class="label"/>
+                </td>   
+                <td ><input type="text" formControlName="pillarTotal" readonly class="label"/></td>               
+            </tr>
+            <tr>
+                <td>Extent</td>               
+                <td *ngFor="let heading of headers; let i = index">
+                    <input type="checkbox" formControlName="{{'sec'+(i +1) + 'ExtentInd'}}"/>
+                </td>
+                <td ><input type="text" formControlName="extentTotal" readonly class="label"/></td>         
+            <tr>
+            	<td>Severity</td>               
+                <td *ngFor="let heading of headers; let i = index">
+                    <input type="checkbox" formControlName="{{'sec' + (i +1) + 'SeverityInd'}}"/>
+                </td>             
+                <td><input type="text" formControlName="severityTotal" readonly class="label"/></td>
+            </tr>            
+             <tr>                
+                <td>Permanence</td>                
+                <td *ngFor="let heading of headers; let i = index">
+                    <input type="checkbox" formControlName="{{'sec'+ (i +1) + 'PermananceInd'}}"/>
+                </td>
+                <td><input type="text" formControlName="permanenceTotal" readonly class="label"/></td>
+            </tr>
+            <tr>
+                <td [colSpan]="headers.length -1 "></td>
+                <td [colSpan]="headers.length > 1 ? 2 : 1">Total Weighting</td>
+                <td><input type="text" formControlName="inspTotalWeighting" readonly class="label"/></td>
+            </tr>
+             <tr>
+               <td [colSpan]="headers.length -1 "></td>   
+               <td [colSpan]="headers.length > 1 ? 2 : 1">Result before Repetition or Intent</td>
+                <td><input type="text" formControlName="inspInspectionResult" class="label"/>
+                      
+	             </td>
+            </tr>
+             <tr>
+                <td>Intent</td>
+                <td *ngFor="let heading of headers; let i = index">
+                    <select formControlName="{{'sec'+(i+1)+'IntentCode'}}" class="form-control form-control-sm">
+                        <option value="0"></option>
+                        <option value="1">N15</option> 
+                        <option value="2">N20</option> 
+                        <option value="3">N45</option> 
+                        <option value="4">N60</option> 
+                        <option value="5">N100</option> 
+                        <option value="6">N200</option> 
+                    </select></td>                
+                <td>&nbsp;</td>
+            </tr>
+            
+        </tbody>
+    </table>
+    </form>
