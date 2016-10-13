@@ -20,4 +20,9 @@ export class LocalStorageService{
         return localStorage.getItem(key);
     }
 
+
+    getUser():string{
+        return localStorage.getItem("user");
+    }
+
 }

@@ -147,7 +147,7 @@ nav a.router-link-active {
 }
 
 .ng-invalid:not(form)  {
-  border-left: 5px solid #a94442; /* red */
+  border-left: 5px solid #e50000; /* red */
 }
 
 
@@ -172,15 +172,4 @@ nav a.router-link-active {
 .thumbnail:hover > div {
     display: block;
      box-shadow: 0 5px 10px 0 rgba(0,0,0,0.22);
-}
-
-.table {
-    table-layout:fixed;
-}
-
-.table td {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-
 }

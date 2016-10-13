@@ -35,6 +35,7 @@ import {BdgpModule} from './bdgp/bdgp.module';
 import {HormoneModule} from './hormone/hormone.module';
 
 
+
 @NgModule({
   imports: [BrowserModule, HttpModule, routing, DashboardModule,
     SummaryModule, ContainerModule, NitratesModule, WildBirdsModule, HabitatsModule,

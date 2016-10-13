@@ -1,182 +1,203 @@
 <div class="card">
     <div class="card-block">
         <div class="container-fluid">
-            <form [formGroup]="groundWaterForm">                            
+            <form [formGroup]="groundWaterForm">
                 <ngb-accordion #acc="ngbAccordion" activeIds="details,group1,total">
                     <ngb-panel title="Details" id="details">
                         <template ngbPanelContent>
                             <div class="form-group row">
-                                <label for="inspDate" class="col-md-2 col-form-label">Inspection Date</label>
-                                <div class="col-md-2">
-                                    <input type="date" class="form-control form-control-sm" id="inspDate" formControlName='inspDate'>
-                                </div>
-                                <label for="reasonNotCompleted" class="col-md-4 col-form-label"> Reason Inspection Not
-									Completed</label>
-                                <div class="col-md-3">
-                                    <select class="form-control form-control-sm" id="reasonNotCompleted" formControlName="reasonNotCompleted">
-                                        <option selected="selected" value="-9999">NA</option>
-                                        <option value="1">Early Retirement</option>
-                                        <option value="2">Refusal to Co-operate</option>
-                                        <option value="3">SMR Deferred to Next Year</option>
-                                        <option value="4">Other</option>
-								    </select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="checkbox">
-                                    <label class="col-sm-8 col-form-label ">Force
+                                <div class="col-md-6">
+                                     <label for="inspDate" class="col-md-4 col-form-label">Inspection Date</label>
+                                    <div class="col-md-4">
+                                        <input type="date" class="form-control form-control-sm" id="inspDate" formControlName='inspDate'>
+                                    </div>
+                                    <div class="checkbox">
+                                       <label class="col-sm-4 col-form-label ">Force
 										Majeure<input type="checkbox"
 										 id="forceMajeureInd"
 										 formControlName="forceMajeureInd"></label>
+                                    </div>
+                                </div>
+                               <div class="col-md-6">
+                                   <label for="reasonNotCompleted" class="col-md-6 col-form-label"> Reason Inspection Not
+									Completed</label>
+                                    <div class="col-md-6">
+                                        <select class="form-control form-control-sm" id="reasonNotCompleted" formControlName="reasonNotCompleted">
+                                            <option selected="selected" value="-9999">NA</option>
+                                            <option value="1">Early Retirement</option>
+                                            <option value="2">Refusal to Co-operate</option>
+                                            <option value="3">SMR Deferred to Next Year</option>
+                                            <option value="4">Other</option>
+                                        </select>
+                                    </div>
+                               </div>                                
+                            </div>
+                           
+                        </template>
+                    </ngb-panel>
+                    <ngb-panel title="Group 1 " id="group1">
+
+                        <template ngbPanelContent>
+                            <div class="form-group row">
+                                <div class="col-md-7">
+                                    <span class="font-weight-bold">GAEC 3 - Protection of Groundwater against pollution</span>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="col-md-6 offset-md-3">
+                                        <span class="font-weight-bold">LPIS Number</span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <span class="font-weight-bold">code</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- start of 3A -->
+                            <div class="form-group form-group-sm row">
+                                <div class="col-md-7">
+                                    <div class="col-md-1">
+                                        <span class="font-weight-bold">3A</span>
+                                    </div>
+                                    <label for="gaec3Q1Answer" class="col-md-11">Is there evidence of direct or indirect discharge of chemical fertilisers/agri chemicals, (including plant protection products and biocides) hydrocarbons/waste oils or other List 1 substances to groundwater/water sources?</label>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="col-md-3">
+                                        <select class="form-control form-control-sm" id="gaec3Q1Answer" formControlName="gaec3Q1Answer">
+                                            <option value="" selected="selected"> </option>
+                                            <option value="0">NA</option>
+                                            <option value="1">Yes</option>
+                                            <option value="2">CL</option>
+                                            
+								     </select>
+                                    </div>
+                                    <div class="col-md-6" *ngIf="groundWaterForm.controls['gaec3Q1Answer'].value == 1">
+                                        <input type="text" class="form-control form-control-sm" formControlName="gaec3Q1LPISNum" id="gaec3Q1LPISNum">
+                                    </div>
+                                    <div class="col-md-3" *ngIf="groundWaterForm.controls['gaec3Q1Answer'].value == 1">
+                                        <select class="form-control form-control-sm" id="gaec3Q1Transgression" formControlName="gaec3Q1Transgression">>
+                                            <option value=""></option>
+                                                <option value="4">4</option>
+                                                <option value="8">8</option>
+                                                <option value="11">11</option>
+                                                <option value="31">31</option>
+                                                <option value="51">51</option>                                            
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
+                            <!-- end of 3A -->
+                            <!-- start of 3B -->
+                            <div class="form-group form-group-sm row">
+                                 <div class="col-md-7">
+                                    <div class="col-md-1">
+                                        <span class="font-weight-bold">3B</span>
+                                    </div>
+                                    <label for="gaec3Q2Answer" class="col-md-11">Is there evidence of poor management of Sheep dip including land spreading and buffer zones? </label>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="col-md-3">
+                                         <select class="form-control form-control-sm" id="gaec3Q2Answer" formControlName="gaec3Q2Answer">
+                                            <option value="" selected="selected"> </option>
+                                            <option value="0">NA</option>
+                                            <option value="1">Yes</option>
+                                            <option value="2">CL</option>
+                                            
+								     </select>
+                                    </div>
+                                     <div class="col-md-6" *ngIf="groundWaterForm.controls['gaec3Q2Answer'].value == 1">
+                                         <input type="text" class="form-control form-control-sm" formControlName="gaec3Q2LPISNum" id="gaec3Q2LPISNum">
+                                    </div>
+                                     <div class="col-md-3" *ngIf="groundWaterForm.controls['gaec3Q2Answer'].value == 1">
+                                        <select class="form-control form-control-sm" id="gaec3Q2Transgression" formControlName="gaec3Q2Transgression">
+                                            <option value=""></option>
+                                                <option value="4">4</option>
+                                                <option value="8">8</option>
+                                                <option value="11">11</option>
+                                                <option value="31">31</option>
+                                                <option value="51">51</option>                                           
+                                        </select>
+                                     </div>
+                                </div>
+                            </div>
+                            <!-- end of 3B -->
+                            <!-- start of 3C -->
+                            <div class="form-group form-group-sm row">
+                                <div class="col-md-7">
+                                    <div class="col-md-1">
+                                        <span class="font-weight-bold">3C</span>
+                                    </div>
+                                    <label for="gaec3Q3Answer" class="col-md-11">Is there evidence of direct or indirect discharges of spent sheep dip to groundwater/water sources?</label>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="col-md-3">
+                                         <select class="form-control form-control-sm" id="gaec3Q3Answer" formControlName="gaec3Q3Answer">
+                                            <option value="" selected="selected"> </option>
+                                            <option value="0">NA</option>
+                                            <option value="1">Yes</option>
+                                            <option value="2">CL</option>
+                                            
+								     </select>
+                                    </div>
+                                    <div class="col-md-6" *ngIf="groundWaterForm.controls['gaec3Q3Answer'].value == 1">
+                                        <input type="text" class="form-control form-control-sm" formControlName="gaec3Q3LPISNum" id="gaec3Q3LPISNum">
+                                     </div>
+                                      <div class="col-md-3" *ngIf="groundWaterForm.controls['gaec3Q3Answer'].value == 1">
+                                        <select class="form-control form-control-sm" id="gaec3Q3Transgression" formControlName="gaec3Q3Transgression">>
+                                            <option value=""></option>
+                                                <option value="11">11</option>
+                                                <option value="31">31</option>
+                                                <option value="51">51</option>                                           
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end of 3C -->
+                            <!-- start of 3D -->
+                            <div class="form-group form-group-sm row">
+                                <div class="col-md-7">
+                                    <div class="col-md-1">
+                                        <span class="font-weight-bold">3D</span>
+                                    </div>
+                                    <label for="gaec3Q4Answer" class="col-md-11" highlight><span >Other discharges either direct or indirect of List 2 substances including where animals have been disposed of on the farm has the disposal endangered groundwater?</span></label>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="col-md-3">
+                                         <select class="form-control form-control-sm" id="gaec3Q4Answer" formControlName="gaec3Q4Answer">
+                                            <option value="" selected="selected"> </option>
+                                            <option value="0">NA</option>
+                                            <option value="1">Yes</option>
+                                            <option value="2">CL</option>                                            
+								     </select>
+                                    </div>
+                                      <div class="col-md-6" *ngIf="groundWaterForm.controls['gaec3Q4Answer'].value == 1">
+                                         <input type="text" class="form-control form-control-sm" formControlName="gaec3Q4LPISNum" id="gaec3Q4LPISNum">
+                                     </div>
+                                      <div class="col-md-3" *ngIf="groundWaterForm.controls['gaec3Q4Answer'].value == 1">
+                                        <select class="form-control form-control-sm" id="gaec3Q4Transgression" formControlName="gaec3Q4Transgression">>
+                                            <option value=""></option>
+                                                <option value="4">4</option>
+                                                <option value="11">11</option>
+                                                <option value="31">31</option>
+                                                <option value="51">51</option>                                           
+                                        </select>
+                                     </div>
+                                </div>
+                            </div>
+                            <!-- end of 3D -->
                         </template>
+
                     </ngb-panel>
-                    <ngb-panel title="Group 1 " id="group1" >
-                       
-                        <template ngbPanelContent >
-                              <div class="form-group row" >
-                                  <div class="col-md-8">
-                                      <span class="font-weight-bold">GAEC 3 - Protection of Groundwater against pollution</span>
-                                  </div>  
-                                  <div class="col-md-2 offset-sm-1">
-                                      <span class="font-weight-bold">LPIS Number</span>
-                                  </div> 
-                                  <div class="col-md-1">
-                                      <span class="font-weight-bold">code</span>
-                                  </div> 
-                              </div>
-                              <!-- start of 3A -->
-                              <div class="form-group form-group-sm row">
-                                  <div class="col-md-1">
-                                      <span class="font-weight-bold">3A</span>
-                                  </div>  
-                                  <label for="gaec3Q1Answer" class="col-md-7 col-form-label">Is there evidence of direct or indirect discharge of chemical fertilisers/agri chemicals, (including plant protection products and biocides) hydrocarbons/waste oils or other List 1 substances to groundwater/water sources?</label>
-                                  
-                                  <div class="col-md-1">
-                                       <select class="form-control form-control-sm" id="gaec3Q1Answer" formControlName="gaec3Q1Answer">
-                                            <option value="" selected="selected"> </option>
-                                            <option value="0">NA</option>
-                                            <option value="1">Yes</option>
-                                            <option value="2">CL</option>
-                                            
-								     </select>
-                                  </div> 
-                                  <div class="col-md-2" *ngIf="groundWaterForm.controls['gaec3Q1Answer'].value == 1">
-                                      <input type="text" class="form-control form-control-sm"  formControlName="gaec3Q1LPISNum" id="gaec3Q1LPISNum">
-                                  </div>
-                                  <div class="col-md-1" *ngIf="groundWaterForm.controls['gaec3Q1Answer'].value == 1">
-                                       <select class="form-control form-control-sm" id="gaec3Q1Transgression"  formControlName="gaec3Q1Transgression" >>
-                                           <option value=""></option>
-                                            <option value="4">4</option>
-                                            <option value="8">8</option>
-                                            <option value="11">11</option>
-                                            <option value="31">31</option>
-                                            <option value="51">51</option>                                            
-								     </select>
-                                  </div> 
-                              </div> <!-- end of 3A -->
-                              <!-- start of 3B -->
-                              <div class="form-group form-group-sm row">
-                                  <div class="col-md-1">
-                                      <span class="font-weight-bold">3B</span>
-                                  </div>  
-                                  <label for="gaec3Q2Answer" class="col-md-7 col-form-label">Is there evidence of poor management of Sheep dip including land spreading and buffer zones? </label>
-                                  
-                                  <div class="col-md-1">
-                                       <select class="form-control form-control-sm" id="gaec3Q2Answer"  formControlName="gaec3Q2Answer">
-                                            <option value="" selected="selected"> </option>
-                                            <option value="0">NA</option>
-                                            <option value="1">Yes</option>
-                                            <option value="2">CL</option>
-                                            
-								     </select>
-                                  </div> 
-                                  <div class="col-md-2" *ngIf="groundWaterForm.controls['gaec3Q2Answer'].value == 1">
-                                      <input type="text" class="form-control form-control-sm"  formControlName="gaec3Q2LPISNum" id="gaec3Q2LPISNum">
-                                  </div>
-                                  <div class="col-md-1" *ngIf="groundWaterForm.controls['gaec3Q2Answer'].value == 1">
-                                       <select class="form-control form-control-sm" id="gaec3Q2Transgression"  formControlName="gaec3Q2Transgression" >
-                                           <option value=""></option>
-                                            <option value="4">4</option>
-                                            <option value="8">8</option>
-                                            <option value="11">11</option>
-                                            <option value="31">31</option>
-                                            <option value="51">51</option>                                           
-								     </select>
-                                  </div> 
-                              </div> <!-- end of 3B -->
-                               <!-- start of 3C -->
-                              <div class="form-group form-group-sm row">
-                                  <div class="col-md-1">
-                                      <span class="font-weight-bold">3C</span>
-                                  </div>  
-                                  <label for="gaec3Q3Answer" class="col-md-7 col-form-label">Is there evidence of direct or indirect discharges of spent sheep dip to groundwater/water sources? </label>
-                                  
-                                  <div class="col-md-1">
-                                       <select class="form-control form-control-sm" id="gaec3Q3Answer"  formControlName="gaec3Q3Answer">
-                                            <option value="" selected="selected"> </option>
-                                            <option value="0">NA</option>
-                                            <option value="1">Yes</option>
-                                            <option value="2">CL</option>
-                                            
-								     </select>
-                                  </div> 
-                                  <div class="col-md-2" *ngIf="groundWaterForm.controls['gaec3Q3Answer'].value == 1">
-                                      <input type="text" class="form-control form-control-sm"  formControlName="gaec3Q3LPISNum" id="gaec3Q3LPISNum" >
-                                  </div>
-                                  <div class="col-md-1" *ngIf="groundWaterForm.controls['gaec3Q3Answer'].value == 1">
-                                       <select class="form-control form-control-sm" id="gaec3Q3Transgression"  formControlName="gaec3Q3Transgression" >>
-                                           <option value=""></option>
-                                            <option value="11">11</option>
-                                            <option value="31">31</option>
-                                            <option value="51">51</option>                                           
-								     </select>
-                                  </div> 
-                              </div> <!-- end of 3C -->
-                               <!-- start of 3D -->
-                              <div class="form-group form-group-sm row">
-                                  <div class="col-md-1">
-                                      <span class="font-weight-bold">3D</span>
-                                  </div>  
-                                  <label for="gaec3Q4Answer" class="col-md-7 col-form-label">Other discharges either direct or indirect of List 2 substances including where animals have been disposed of on the farm has the disposal endangered groundwater? </label>
-                                  
-                                  <div class="col-md-1">
-                                       <select class="form-control form-control-sm" id="gaec3Q4Answer"  formControlName="gaec3Q4Answer">
-                                            <option value="" selected="selected"> </option>
-                                            <option value="0">NA</option>
-                                            <option value="1">Yes</option>
-                                            <option value="2">CL</option>
-                                            
-								     </select>
-                                  </div> 
-                                  <div class="col-md-2" *ngIf="groundWaterForm.controls['gaec3Q4Answer'].value == 1">
-                                      <input type="text" class="form-control form-control-sm"  formControlName="gaec3Q4LPISNum" id="gaec3Q4LPISNum">
-                                  </div>
-                                  <div class="col-md-1" *ngIf="groundWaterForm.controls['gaec3Q4Answer'].value == 1">
-                                       <select class="form-control form-control-sm" id="gaec3Q4Transgression"  formControlName="gaec3Q4Transgression" >>
-                                          <option value=""></option>
-                                            <option value="4">4</option>
-                                            <option value="11">11</option>
-                                            <option value="31">31</option>
-                                            <option value="51">51</option>                                           
-								     </select>
-                                  </div> 
-                              </div> <!-- end of 3D -->
+                    <ngb-panel title="Total" id="total">
+                        <template ngbPanelContent>
+                            <div class="form-group row">
+                                <total-weighting [headers]="totalHeaders" [form]="groundWaterForm" [localStorageKey]="localStorageKey" [weightingTotals]="weightingTotals"></total-weighting>
+                            </div>                           
                         </template>
-                        
-                    </ngb-panel>
-                    <ngb-panel title="Total" id="total" >
-                         <template ngbPanelContent>
-                              <div class="form-group row">
-                                  <total-weighting [headers]="totalHeaders" [form]="groundWaterForm" [localStorageKey]="localStorageKey" [weightingTotals]="weightingTotals"></total-weighting>
-                              </div>
-                         </template>
                     </ngb-panel>
                 </ngb-accordion>
                 <button class="btn btn-default btn-sm" (click)="back()">Back</button>
-				<button class="btn btn-default btn-sm" [disabled]="!groundWaterForm.valid" (click)="saveForm(groundWaterForm.value)">Save</button>
-				<button class="btn btn-default btn-sm" [disabled]="!groundWaterForm.valid" (click)="finishForm(groundWaterForm.value)">Finish</button>
+                <button class="btn btn-default btn-sm" [disabled]="!groundWaterForm.valid" (click)="saveForm(groundWaterForm.value)">Save</button>
+                <button class="btn btn-default btn-sm" [disabled]="!groundWaterForm.valid" (click)="finishForm(groundWaterForm.value)">Finish</button>
             </form>
         </div>
     </div>
