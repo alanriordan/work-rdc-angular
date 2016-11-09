@@ -6,7 +6,7 @@ import {InspectionDetailsService} from '../common/inspection-details.service';
 import {InspectionDetails, SmrStatus} from '../common/inspection-details';
 import {getSmrCodeFromRoute} from '../common/smr-codes';
 import {LocalStorageService} from '../service/localstorage.service';
-import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/forms';
 import {SmrCode} from '../common/smr-codes';
 import {TotalWeightingComponent} from '../common/total-weighting.component';
 import {RdcValidators} from '../common/validators';
@@ -25,7 +25,7 @@ export class GroundWaterComponent implements OnInit, AfterViewInit, OnDestroy {
     totalHeaders: string[] = ['Group1'];
     localStorageKey: string = String(SmrCode.GAEC3);
     user:string
-    
+    notes:AbstractControl;
     sec1Total: number = 0;
     weightingTotals: Map<string, number>;
     storageSaveKey:string;
@@ -47,9 +47,10 @@ export class GroundWaterComponent implements OnInit, AfterViewInit, OnDestroy {
             'gaec3Q3Transgression': [''],
             'gaec3Q4Answer': ['', Validators.required],
             'gaec3Q4LPISNum': [''],
-            'gaec3Q4Transgression': ['']
-
+            'gaec3Q4Transgression': [''],
+            'notes': ['']
         });
+        this.notes = this.groundWaterForm.controls['notes'];
         this.weightingTotals = new Map<string, number>();       
     }
 
@@ -72,6 +73,9 @@ export class GroundWaterComponent implements OnInit, AfterViewInit, OnDestroy {
         if (savedData) {
             Object.keys(savedData).forEach((key) => {
                 if (this.groundWaterForm.controls[key]) {
+                    if (key == 'notes'){
+                        //tinyMCE.activeEditor.setContent(savedData[key]);
+                    }
                     this.groundWaterForm.controls[key].setValue(savedData[key]);
                 }
             });
@@ -144,6 +148,10 @@ export class GroundWaterComponent implements OnInit, AfterViewInit, OnDestroy {
         let details = this.inspectionDetailsService.getSelectedInspection(this.user, this.selectedInstance);
         this.inspectionDetailsService.updateStatus(this.user, SmrCode.GAEC3, SmrStatus.finished, details);
         this.localStorageService.saveObjectData(this.storageSaveKey, this.groundWaterForm.value);
+    }
+
+    keyupHandlerFunction(changes:any){
+      this.notes.setValue(changes);
     }
 
 }

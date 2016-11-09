@@ -191,6 +191,7 @@
                         <template ngbPanelContent>
                             <div class="form-group row">
                                 <total-weighting [headers]="totalHeaders" [form]="groundWaterForm" [localStorageKey]="localStorageKey" [weightingTotals]="weightingTotals"></total-weighting>
+                               <tiny-editor [value]="test" (onEditorKeyup)="keyupHandlerFunction($event)"></tiny-editor>
                             </div>                           
                         </template>
                     </ngb-panel>
